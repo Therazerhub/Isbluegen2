@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {Liquid} from 'liquidjs';
-const source=await fs.readFile('sections/main-product.liquid','utf8');
-const schema=JSON.parse(source.match(/{% schema %}([\s\S]*?){% endschema %}/)[1]);
-const settings=Object.fromEntries(schema.settings.map(s=>[s.id,s.default]));
+const sources=await Promise.all(['main-product','product-details'].map(name=>fs.readFile('sections/'+name+'.liquid','utf8')));
+const source=sources.join('\n');
+const settings=Object.fromEntries(sources.flatMap(s=>JSON.parse(s.match(/{% schema %}([\s\S]*?){% endschema %}/)[1]).settings).map(s=>[s.id,s.default]));
 const engine=new Liquid({root:['snippets'],extname:'.liquid'});
 engine.registerFilter('money',v=>String(v));
 engine.registerFilter('json',v=>JSON.stringify(v));
@@ -14,7 +14,7 @@ engine.registerFilter('placeholder_svg_tag',()=> '<svg class="placeholder"></svg
 engine.registerFilter('video_tag',()=> '<video controls></video>');
 engine.registerFilter('external_video_tag',()=> '<iframe title="Test video"></iframe>');
 engine.registerFilter('payment_button',()=> '');
-const template=source.replace(/{% schema %}[\s\S]*?{% endschema %}/,'').replace(/{% form [\s\S]*?%}/g,'<form>').replace(/{% endform %}/g,'</form>');
+const template=source.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'').replace(/{% form [\s\S]*?%}/g,'<form>').replace(/{% endform %}/g,'</form>');
 const variant={id:1,title:'Default Title',price:100,available:true};
 const product={title:'A complete product — title | preserved',description:'<p>Details</p><img src="/test.webp" width="2400" height="1200">',variants:[variant],selected_or_first_available_variant:variant,has_only_default_variant:true,media:[]};
 const render=(p,opts={})=>engine.parseAndRender(template,{product:p,section:{id:'test',settings:{...settings,...opts},blocks:[]},routes:{root_url:'/',all_products_collection_url:'/collections/all'},cart:{}});
@@ -33,3 +33,23 @@ html=await render({...product,media:[{id:10,media_type:'video'}]},{show_videos:f
 assert(!html.includes('class="product-film"'));
 assert(!html.includes('data-product-reveal'));
 console.log('Product rendering: complete title, empty media/description, sold-out variant, hosted/external video, portrait ratio and settings passed.');
+
+const chaptersSource=await fs.readFile('sections/product-chapters.liquid','utf8');
+const chaptersSchema=JSON.parse(chaptersSource.match(/{% schema %}([\s\S]*?){% endschema %}/)[1]);
+const chapterSettings=Object.fromEntries(chaptersSchema.settings.map(s=>[s.id,s.default]));
+const chapterTemplate=chaptersSource.replace(/{% schema %}[\s\S]*?{% endschema %}/,'');
+engine.registerFilter('metafield_tag',v=>v?.value||'');
+const chapterRender=(p,opts={},blocks=[],editing=false)=>engine.parseAndRender(chapterTemplate,{product:p,section:{id:'chapters',settings:{...chapterSettings,...opts},blocks},request:{design_mode:editing}});
+assert(!(await chapterRender(product)).includes('data-chapters'));
+assert((await chapterRender(product,{},[],true)).includes('only visible in the editor'));
+const entry=(heading)=>({heading:{value:heading},body:{value:'<p>Product specific content</p>'},image:{value:{src:'/test.webp'}}});
+html=await chapterRender({...product,metafields:{custom:{product_story:{value:[entry('First'),entry('Second')]}}}});
+assert.equal((html.match(/data-chapter-step/g)||[]).length,2);
+assert(html.indexOf('First')<html.indexOf('Second'));
+const blocks=[{settings:{enabled:true,heading:'Visible',body:'<p>Details</p>'}},{settings:{enabled:false,heading:'Hidden'}}];
+html=await chapterRender(product,{source:'blocks'},blocks);
+assert(html.includes('Visible'));assert(!html.includes('Hidden'));
+assert.equal((html.match(/data-chapter-step/g)||[]).length,1);
+html=await chapterRender({...product,metafields:{custom:{product_story:{value:[entry('Product override')]}}}},{source:'blocks'},blocks);
+assert(html.includes('Visible'));assert(!html.includes('Product override'));
+console.log('Chapters: missing data, editor help, product entries, order, block visibility and source selection passed.');

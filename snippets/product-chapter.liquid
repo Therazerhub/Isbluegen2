@@ -1,0 +1,19 @@
+{% comment %}Shared chapter markup for editor blocks and product metaobjects.{% endcomment %}
+<article class="chapter-step chapter-step--{{ image_side }}" id="Chapter-{{ section_id }}-{{ index }}" data-chapter-step {{ editor_attributes }}>
+  <div class="chapter-inline-media">
+    {% if video != blank %}
+      {{ video | video_tag: controls: true, preload: 'none', image_size: '1200x' }}
+    {% elsif image != blank %}
+      <picture>
+        {% if mobile_image != blank %}<source media="(max-width: 767px)" srcset="{{ mobile_image | image_url: width: 900 }}">{% endif %}
+        {{ image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '400,700,1000,1600', sizes: '(min-width: 990px) 52vw, 100vw', alt: image.alt }}
+      </picture>
+    {% endif %}
+  </div>
+  <div class="chapter-copy">
+    <p class="chapter-number">{{ index | prepend: '0' }} <span>{{ eyebrow | escape }}</span></p>
+    {% if heading != blank %}<h3>{{ heading | escape }}</h3>{% endif %}
+    {% if body != blank %}<div class="rte">{{ body }}</div>{% endif %}
+    {% if button_label != blank and button_url != blank %}<a class="chapter-link" href="{{ button_url }}">{{ button_label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</article>

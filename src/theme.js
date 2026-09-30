@@ -1,3 +1,7 @@
+import {mountChapters,unmountChapters} from './chapters.js';
+mountChapters().catch(()=>{});
+document.addEventListener('shopify:section:load',event=>mountChapters(event.target).catch(()=>{}));
+document.addEventListener('shopify:section:unload',event=>unmountChapters(event.target));
 const config=JSON.parse(document.querySelector('#isblue-config')?.textContent||'{}');
 const root=config.root||'/';
 const money=n=>new Intl.NumberFormat(config.locale||'en-IN',{style:'currency',currency:config.currency||'INR',maximumFractionDigits:2}).format(n/100);
@@ -21,7 +25,40 @@ document.addEventListener('submit',async e=>{const form=e.target;if(!form.matche
 async function loadCart(){const target=document.querySelector('[data-cart-lines]');try{const cart=await request('cart.js');document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=cart.item_count);document.querySelector('[data-cart-total]').textContent=money(cart.total_price);document.querySelector('[data-cart-error]').textContent='';document.querySelector('.drawer-total').hidden=!cart.item_count;target.innerHTML=cart.items.length?cart.items.map(item=>`<article class="cart-line"><a href="${escape(item.url)}"><img src="${escape(item.image)}" alt="${escape(item.product_title)}" width="80" height="96"></a><div><h3><a href="${escape(item.url)}">${escape(item.product_title)}</a></h3>${item.variant_title&&item.variant_title!=='Default Title'?`<p>${escape(item.variant_title)}</p>`:''}<div class="quantity"><button data-cart-change="${item.quantity-1}" data-key="${escape(item.key)}" aria-label="Decrease quantity of ${escape(item.product_title)}">−</button><span aria-live="polite">${item.quantity}</span><button data-cart-change="${item.quantity+1}" data-key="${escape(item.key)}" aria-label="Increase quantity of ${escape(item.product_title)}">+</button></div><button class="remove-line" data-cart-change="0" data-key="${escape(item.key)}">Remove</button></div><strong class="cart-line-price">${money(item.final_line_price)}</strong></article>`).join(''):`<div class="empty-state"><h3>Room for something good.</h3><p>Your bag is empty. Let's find your next favourite.</p><a class="button button-primary" href="${root}collections/all">Explore the edit</a></div>`}catch(error){target.innerHTML='<p>Your bag could not be loaded.</p>';document.querySelector('[data-cart-error]').textContent=error.message}}
 async function changeCart(key,quantity,button){document.querySelectorAll('[data-cart-change]').forEach(b=>b.disabled=true);try{await request('cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:key,quantity})});await loadCart()}catch(error){document.querySelector('[data-cart-error]').textContent=error.message;document.querySelectorAll('[data-cart-change]').forEach(b=>b.disabled=false)}}
 document.addEventListener('input',e=>{if(!e.target.matches('[data-search-input]'))return;clearTimeout(searchTimer);searchAbort?.abort();const query=e.target.value.trim();const target=document.querySelector('[data-search-results]');if(query.length<2){target.innerHTML='<p class="search-hint">Try a pocket printer, a home upgrade, or your next travel essential.</p>';return}searchTimer=setTimeout(async()=>{searchAbort=new AbortController();target.innerHTML='<p class="search-hint">Finding the good stuff…</p>';try{const result=await request(`search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=5`,{signal:searchAbort.signal});const products=result.resources.results.products;target.innerHTML=products.length?products.map(p=>`<a class="search-result" href="${escape(p.url)}">${p.image?`<img src="${escape(typeof p.image==='string'?p.image:p.image.url)}" width="64" height="70" alt="">`:''}<div><h3>${escape(p.title)}</h3><span>View product</span></div></a>`).join(''):'<p class="search-hint">No matching finds. Try another search.</p>'}catch(error){if(error.name!=='AbortError')target.innerHTML='<p class="search-hint">Search suggestions are unavailable. Press Enter to see full results.</p>'}},250)});
-function showMedia(page,id){page.querySelectorAll('[data-media-id]').forEach(el=>{el.hidden=el.dataset.mediaId!==String(id);el.querySelectorAll('video').forEach(v=>v.pause())});page.querySelectorAll('[data-media-target]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mediaTarget===String(id))))}
+function showMedia(page,id){
+ if(!page||![...page.querySelectorAll('[data-media-id]')].some(el=>el.dataset.mediaId===String(id)))return;
+ page.querySelectorAll('[data-media-id]').forEach(el=>{
+  const wasVisible=!el.hidden;
+  el.hidden=el.dataset.mediaId!==String(id);
+  if(el.hidden){el.querySelectorAll('video').forEach(v=>v.pause());if(wasVisible)el.querySelectorAll('iframe').forEach(frame=>{const src=frame.getAttribute('src');if(src)frame.setAttribute('src',src)})}
+ });
+ page.querySelectorAll('[data-media-target]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mediaTarget===String(id))));
+}
+function stepMedia(gallery,direction){
+ const buttons=[...gallery.querySelectorAll('[data-media-target]')];
+ if(buttons.length<2)return;
+ const current=buttons.findIndex(b=>b.getAttribute('aria-pressed')==='true');
+ const next=buttons[(current+direction+buttons.length)%buttons.length];
+ showMedia(gallery.closest('[data-product-page]'),next.dataset.mediaTarget);
+ return next;
+}
+document.addEventListener('keydown',event=>{
+ const gallery=event.target.closest('.product-gallery');
+ if(!gallery||!event.target.closest('[data-media-target]')||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;
+ event.preventDefault();stepMedia(gallery,['ArrowRight','ArrowDown'].includes(event.key)?1:-1)?.focus();
+});
+let galleryTouch=null;
+document.addEventListener('touchstart',event=>{
+ const gallery=event.target.closest('.product-gallery');
+ if(gallery&&!event.target.closest('video,iframe,model-viewer'))galleryTouch={gallery,x:event.touches[0].clientX,y:event.touches[0].clientY};
+},{passive:true});
+document.addEventListener('touchend',event=>{
+ if(!galleryTouch)return;
+ const dx=event.changedTouches[0].clientX-galleryTouch.x,dy=event.changedTouches[0].clientY-galleryTouch.y;
+ if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)stepMedia(galleryTouch.gallery,dx<0?1:-1);
+ galleryTouch=null;
+},{passive:true});
+document.addEventListener('touchcancel',()=>galleryTouch=null,{passive:true});
 document.addEventListener('change',e=>{if(e.target.matches('[data-auto-submit]'))e.target.form.requestSubmit();if(e.target.matches('[data-variant-select]')){const page=e.target.closest('[data-product-page]');const variants=JSON.parse(page.querySelector('[data-variants]').textContent);const variant=variants.find(v=>String(v.id)===e.target.value);if(!variant)return;page.querySelector('[data-product-price]').textContent=money(variant.price);page.querySelector('[data-product-compare]').textContent=variant.compare_at_price>variant.price?money(variant.compare_at_price):'';const button=page.querySelector('[data-add-button]');button.disabled=!variant.available;button.textContent=variant.available?'Add to bag':'Sold out';if(variant.featured_media?.id)showMedia(page,variant.featured_media.id);const url=new URL(location.href);url.searchParams.set('variant',variant.id);history.replaceState({},'',url)}});
 // Product media enhancements use delegated events for Shopify section reloads.
 document.addEventListener('pointermove',event=>{
