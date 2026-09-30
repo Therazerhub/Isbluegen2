@@ -1,0 +1,25 @@
+{
+  "name": "isblue-frequency-theme",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "check": "node scripts/check.mjs",
+    "package": "npm run build && npm run check && node scripts/package.mjs"
+  },
+  "dependencies": {
+    "@designcodeio/threeui": "1.2.0",
+    "gsap": "^3.13.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/manrope": "^5.2.0",
+    "@phosphor-icons/core": "^2.1.1",
+    "esbuild": "^0.25.0",
+    "liquidjs": "^10.21.0",
+    "sharp": "^0.35.5"
+  }
+}

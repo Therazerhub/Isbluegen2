@@ -1,0 +1,103 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "THE ISBLUE EDIT",
+        "heading": "Good finds.",
+        "heading_accent": "Better days.",
+        "description": "Useful gadgets, clever home upgrades, and little things that make a big difference.",
+        "button": "Explore the edit",
+        "link": "/collections/all",
+        "enable_effect": true,
+        "effect_speed": 2
+      }
+    },
+    "products": {
+      "type": "product-rail",
+      "settings": {
+        "heading": "Worth a spot in your day.",
+        "description": "A few of our favourite everyday discoveries.",
+        "collection": "all",
+        "limit": 4,
+        "anchor": "bestsellers",
+        "link_label": "Shop all finds",
+        "products": [
+          "mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
+          "travel-portable-mini-juice-blender",
+          "foldable-storage",
+          "lotus-reflection-water-sensor-diyapack-of-12"
+        ]
+      }
+    },
+    "categories": {
+      "type": "categories",
+      "settings": {
+        "heading": "Whatever your everyday looks like.",
+        "description": "Find a little something for every part of it."
+      },
+      "blocks": {
+        "tech": {
+          "type": "category",
+          "settings": {
+            "title": "Smart little things.",
+            "subtitle": "Good ideas. Pocket sized.",
+            "link": "/products/mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
+            "fallback": "printer"
+          }
+        },
+        "home": {
+          "type": "category",
+          "settings": {
+            "title": "Room for better.",
+            "subtitle": "Home, with a little more thought.",
+            "link": "/products/foldable-storage",
+            "fallback": "storage"
+          }
+        },
+        "life": {
+          "type": "category",
+          "settings": {
+            "title": "Take the good with you.",
+            "subtitle": "Everyday, on your terms.",
+            "link": "/products/travel-portable-mini-juice-blender",
+            "fallback": "blender"
+          }
+        }
+      },
+      "block_order": [
+        "tech",
+        "home",
+        "life"
+      ]
+    },
+    "statement": {
+      "type": "manifesto",
+      "settings": {
+        "heading": "Life is in the little things. Make yours a little better.",
+        "description": "The handy. The unexpected. The how-did-I-live-without-it. That's our kind of good find."
+      }
+    },
+    "spotlight": {
+      "type": "spotlight",
+      "settings": {
+        "product": "mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
+        "eyebrow": "SMALL FIND. BIG POSSIBILITIES.",
+        "heading": "From your phone. Into your world.",
+        "description": "Notes, labels, little memories. Meet the pocket printer that gives your ideas somewhere to go."
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "products",
+    "categories",
+    "statement",
+    "spotlight",
+    "newsletter"
+  ]
+}

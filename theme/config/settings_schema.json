@@ -1,0 +1,4 @@
+[
+ {"name":"theme_info","theme_name":"IsBlue Frequency","theme_version":"1.0.0","theme_author":"IsBlue","theme_documentation_url":"https://isblue.in","theme_support_url":"https://isblue.in/pages/contact"},
+ {"name":"Brand and appearance","settings":[{"type":"image_picker","id":"logo","label":"Logo"},{"type":"color","id":"accent_color","label":"Accent color","default":"#1647ed"},{"type":"select","id":"color_mode","label":"Color mode","default":"light","options":[{"value":"light","label":"Light"},{"value":"dark","label":"Dark"},{"value":"auto","label":"Match device"}]},{"type":"range","id":"page_width","label":"Page width","min":1200,"max":1600,"step":40,"unit":"px","default":1440}]}
+]

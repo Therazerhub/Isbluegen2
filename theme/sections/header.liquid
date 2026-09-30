@@ -1,0 +1,14 @@
+{% if section.settings.announcement != blank %}<div class="announcement"><span>{{ section.settings.announcement | escape }}</span><a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">Meet your next favourite {% render 'icon', name: 'arrow-up-right' %}</a></div>{% endif %}
+<header class="site-header" data-header>
+  <div class="header-inner page-width">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="IsBlue home">{% if settings.logo %}{{ settings.logo | image_url: width: 320 | image_tag: width: 160, loading: 'eager', alt: shop.name }}{% else %}<img src="{{ 'isblue-logo.png' | asset_url }}" width="148" height="64" alt="IsBlue">{% endif %}</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="{{ routes.all_products_collection_url }}?sort_by=best-selling">Best sellers</a>
+      <a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">New arrivals</a>
+      <details class="mega"><summary>Products {% render 'icon', name: 'caret-down' %}</summary><div class="mega-panel"><p class="eyebrow">Find your everyday upgrade</p><div class="mega-links">{% if section.settings.menu != blank %}{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }} {% render 'icon', name: 'arrow-up-right' %}</a>{% endfor %}{% endif %}<a href="{{ routes.all_products_collection_url }}">Explore all products {% render 'icon', name: 'arrow-up-right' %}</a></div></div></details>
+      <a href="/pages/contact">Contact</a>
+    </nav>
+    <div class="header-actions"><button class="icon-button" data-open="search-dialog" aria-label="Search">{% render 'icon', name: 'magnifying-glass' %}</button><a class="icon-button account-link" href="{{ routes.account_url }}" aria-label="Account">{% render 'icon', name: 'user' %}</a><a class="bag-button" href="{{ routes.cart_url }}" data-open="cart-dialog" aria-label="Open shopping bag">{% render 'icon', name: 'handbag' %}<span class="bag-label">Bag</span><span class="cart-count" data-cart-count>{{ cart.item_count }}</span></a><button class="icon-button mobile-menu-button" data-open="menu-dialog" aria-label="Open menu">{% render 'icon', name: 'list' %}</button></div>
+  </div>
+</header>
+{% schema %}{"name":"Header","settings":[{"type":"text","id":"announcement","label":"Announcement","default":"A little discovery. A better everyday."},{"type":"link_list","id":"menu","label":"Products menu","default":"main-menu"}]}{% endschema %}
