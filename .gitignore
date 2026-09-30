@@ -4,3 +4,4 @@ node_modules/
 .sites-runtime/
 theme/assets/*.js.LEGAL.txt
 work/
+build-meta.json
