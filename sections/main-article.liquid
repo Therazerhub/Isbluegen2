@@ -1,0 +1,9 @@
+<article class="article-page page-width section-space">
+  <header class="article-header"><a class="eyebrow" href="{{ blog.url }}">{{ blog.title }}</a><h1>{{ article.title }}</h1><p>{{ article.published_at | date: '%d %B %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p></header>
+  {% if article.image %}<div class="article-hero">{{ article.image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '700,1100,1500,1800', sizes: '100vw', fetchpriority: 'high', alt: article.title }}</div>{% endif %}
+  <div class="rte article-content">{{ article.content }}</div>
+  <footer class="article-footer"><a class="button button-secondary" href="{{ blog.url }}">Back to {{ blog.title }}</a></footer>
+</article>
+{% schema %}
+{"name":"Article","settings":[]}
+{% endschema %}

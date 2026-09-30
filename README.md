@@ -5,7 +5,7 @@ An editorial Shopify Online Store 2.0 theme for IsBlue, built from scratch with 
 ## What is included
 
 - Configurable IsBlue homepage with hero, product edit, category atlas, brand statement, product spotlight, newsletter, and footer.
-- Native product, collection, search, cart, contact, page, and 404 templates.
+- Native product, collection, collection-list, blog, article, search, cart, contact, page, and 404 templates.
 - Ajax add to bag, cart drawer quantity updates, predictive search, variant selection, product media switching, and reduced motion support.
 - ThreeUI `DotMatrixBackground` loaded as an isolated React island only when the homepage hero enables it.
 - GSAP scroll and entrance motion with cleanup for Shopify theme editor section events.
@@ -20,7 +20,7 @@ npm run check
 npm run preview
 ```
 
-The local preview runs at `http://localhost:4173` and uses a small local commerce simulation. Checkout and Shopify customer accounts become active after uploading the `theme/` directory to a Shopify development store.
+The local preview runs at `http://localhost:4173` and uses a small local commerce simulation. Checkout and Shopify customer accounts become active after connecting this repository or uploading the packaged ZIP to a Shopify development store.
 
 To refresh the bundled public catalog image fixtures:
 
@@ -34,11 +34,11 @@ To package the uploadable theme:
 npm run package
 ```
 
-The uploadable theme is the `theme/` directory. The `src/` and `scripts/` directories support local builds and can stay in the repository.
+The Shopify theme directories (`assets`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`) live at the repository root so Shopify's GitHub integration recognizes the `main` branch as a valid theme. The `src/` and `scripts/` directories support local development and are excluded from the upload ZIP.
 
 ## Shopify setup
 
-1. Upload `theme/` as an unpublished theme.
+1. In Shopify, connect the GitHub repository and select `main`, or upload `isblue-frequency-theme.zip` as an unpublished theme.
 2. Set the logo and connect the desired collections in the theme editor.
 3. Review the shipping, return, contact, and payment claims before publishing.
 4. Test products with real variants, inventory, taxes, and checkout settings.

@@ -1,6 +1,6 @@
 import http from 'node:http';import fs from 'node:fs/promises';import path from 'node:path';import {Liquid} from 'liquidjs';
 process.chdir(path.resolve(import.meta.dirname,'..'));
-const port=Number(process.env.PORT||4173),theme=path.resolve('theme');
+const port=Number(process.env.PORT||4173),theme=path.resolve('.');
 const raw=JSON.parse(await fs.readFile('fixtures/catalog.json','utf8')).products;
 const products=raw.map((p,i)=>{const variants=p.variants.map(v=>({...v,price:Math.round(Number(v.price)*100),compare_at_price:Math.round(Number(v.compare_at_price||0)*100),available:v.available!==false}));const image={src:'/assets/'+p.localImage,url:'/assets/'+p.localImage,alt:p.title,width:900,height:900};return{...p,description:p.body_html,object_type:'product',type:['Wellness','Gadgets','Home & living','Accessories','Home & living','Everyday essentials'][i],url:'/products/'+p.handle,price:variants[0].price,compare_at_price:variants[0].compare_at_price,available:variants.some(v=>v.available),variants,has_only_default_variant:variants.length===1&&variants[0].title==='Default Title',selected_or_first_available_variant:variants.find(v=>v.available)||variants[0],featured_image:image,media:[{...image,id:i+1,media_type:'image',preview_image:image}],images:[image]}});
 const byHandle=Object.fromEntries(products.map(p=>[p.handle,p]));

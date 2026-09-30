@@ -1,0 +1,22 @@
+<section class="page-width section-space">
+  <header class="collection-heading"><p class="eyebrow">Browse by mood</p><h1>{{ section.settings.heading }}</h1>{% if section.settings.copy != blank %}<p>{{ section.settings.copy }}</p>{% endif %}</header>
+  <div class="collection-list-grid">
+    {% for collection in collections %}
+      {% unless collection.handle == 'frontpage' %}
+        <a class="collection-list-card" href="{{ collection.url }}">
+          <div class="collection-list-media">
+            {% if collection.featured_image %}{{ collection.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,700,1000', sizes: '(max-width: 767px) 100vw, 33vw', alt: collection.title }}
+            {% elsif collection.products.first.featured_image %}{{ collection.products.first.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,700,1000', sizes: '(max-width: 767px) 100vw, 33vw', alt: collection.title }}
+            {% else %}{{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}{% endif %}
+          </div>
+          <div><h2>{{ collection.title }}</h2><span>{{ collection.products_count }} finds</span></div>
+        </a>
+      {% endunless %}
+    {% else %}
+      <div class="empty-state"><h2>Your collections will live here.</h2><p>Create a collection in Shopify admin to populate this page.</p></div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Collection list","settings":[{"type":"text","id":"heading","label":"Heading","default":"Find your kind of useful."},{"type":"textarea","id":"copy","label":"Intro","default":"Clever things, grouped for quicker wandering."}]}
+{% endschema %}
