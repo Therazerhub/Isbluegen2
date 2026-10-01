@@ -1,1 +1,62 @@
-{"type":"header","name":"Header","sections":{"header":{"type":"header","settings":{"announcement":"A little discovery. A better everyday.","menu":"main-menu"}}},"order":["header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "announcement": "A little discovery. A better everyday.",
+        "menu": "main-menu"
+      }
+    },
+    "manifesto_itfydw": {
+      "type": "manifesto",
+      "disabled": true,
+      "name": "Brand statement",
+      "settings": {
+        "heading": "",
+        "description": ""
+      }
+    },
+    "17908648933fb191d2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_77a0ea2_zqih48": {
+          "type": "ai_gen_block_77a0ea2",
+          "settings": {
+            "heading": "CASH ON DELIVERY AVAILABLE  ✅",
+            "message": "Pay for your order when it arrives.",
+            "desktop_width_percent": 100,
+            "background_color": "#F5F7FF",
+            "text_color": "#17213C",
+            "border_color": "#D7DFF5",
+            "icon_background": "#1647ED",
+            "icon_color": "#FFFFFF",
+            "font_size": 15,
+            "padding": 16,
+            "corner_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_77a0ea2_zqih48"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "manifesto_itfydw",
+    "17908648933fb191d2"
+  ]
+}
