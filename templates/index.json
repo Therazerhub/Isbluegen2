@@ -1,9 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "THE ISBLUE EDIT",
+        "eyebrow": "",
         "heading": "Good finds.",
         "heading_accent": "Better days.",
         "description": "Useful gadgets, clever home upgrades, and little things that make a big difference.",
@@ -18,24 +27,20 @@
       "settings": {
         "heading": "Worth a spot in your day.",
         "description": "A few of our favourite everyday discoveries.",
-        "collection": "all",
-        "limit": 4,
-        "anchor": "bestsellers",
-        "link_label": "Shop all finds",
         "products": [
           "mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
           "travel-portable-mini-juice-blender",
           "foldable-storage",
           "lotus-reflection-water-sensor-diyapack-of-12"
-        ]
+        ],
+        "collection": "all",
+        "limit": 4,
+        "link_label": "Shop all finds",
+        "anchor": "bestsellers"
       }
     },
     "categories": {
       "type": "categories",
-      "settings": {
-        "heading": "Whatever your everyday looks like.",
-        "description": "Find a little something for every part of it."
-      },
       "blocks": {
         "tech": {
           "type": "category",
@@ -43,6 +48,7 @@
             "title": "Smart little things.",
             "subtitle": "Good ideas. Pocket sized.",
             "link": "/products/mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
+            "product": "",
             "fallback": "printer"
           }
         },
@@ -52,6 +58,7 @@
             "title": "Room for better.",
             "subtitle": "Home, with a little more thought.",
             "link": "/products/foldable-storage",
+            "product": "",
             "fallback": "storage"
           }
         },
@@ -61,6 +68,7 @@
             "title": "Take the good with you.",
             "subtitle": "Everyday, on your terms.",
             "link": "/products/travel-portable-mini-juice-blender",
+            "product": "",
             "fallback": "blender"
           }
         }
@@ -69,7 +77,11 @@
         "tech",
         "home",
         "life"
-      ]
+      ],
+      "settings": {
+        "heading": "Whatever your everyday looks like.",
+        "description": "Find a little something for every part of it."
+      }
     },
     "statement": {
       "type": "manifesto",
