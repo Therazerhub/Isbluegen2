@@ -5,6 +5,8 @@ The white editorial layout is the default `product.json` template. It uses each 
 ## Merchant checklist
 
 - Add product images and video in Shopify's product media. Gallery items and hover zoom adapt automatically.
+- The gallery now shows a live media position and a discount marker computed from the selected variant's prices.
+- The Product visual focus section automatically uses the second and third product images when present. In the theme editor you can turn it off, replace either image, change its crop, colors, and text. It hides itself when there is no extra image.
 - Add headings, paragraphs, images, tables or embedded video to the product description; the content flows responsively.
 - Optionally add scroll-story chapters using the Product chapters section or the `custom.product_story` metafield described in [CINEMATIC-CHAPTERS.md](CINEMATIC-CHAPTERS.md).
 - Edit the trust-detail blocks in the Product information section. Keep only claims that match your actual policies and service. Links and captions are optional.
