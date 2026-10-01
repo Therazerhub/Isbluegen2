@@ -1,0 +1,31 @@
+{% liquid
+  assign hero_collection = section.settings.collection | default: collections.all
+  assign lead = section.settings.lead_product | default: hero_collection.products[0]
+  assign second = section.settings.second_product | default: hero_collection.products[1]
+  assign third = section.settings.third_product | default: hero_collection.products[2]
+%}
+<section class="solutions-hero home-section page-width" data-home-reveal>
+  <div class="solutions-hero-copy">
+    <p class="home-eyebrow"><span class="home-mark" aria-hidden="true"></span>{{ section.settings.eyebrow | escape }}</p>
+    <h1>{{ section.settings.heading | escape }}<br><span>{{ section.settings.heading_second | escape }}</span></h1>
+    <p class="home-intro">{{ section.settings.description | escape }}</p>
+    <a class="home-button" href="{{ section.settings.button_link | default: '#shop-solutions' }}">{{ section.settings.button_label | escape }}{% render 'icon', name: 'arrow-up-right' %}</a>
+    <div class="home-hero-assurance"><span>{% render 'icon', name: 'shield-check' %}Secure checkout</span><a href="/pages/contact">Questions? Talk to us{% render 'icon', name: 'arrow-up-right' %}</a></div>
+  </div>
+  <div class="solutions-hero-board" style="--home-image-fit:{{ section.settings.image_fit }}">
+    {% if lead != blank %}<a class="solution-feature solution-feature-main" href="{{ lead.url }}">
+      <div class="solution-feature-top"><span>{{ lead.type | default: 'An everyday solution' | escape }}</span>{% render 'icon', name: 'arrow-up-right' %}</div>
+      <div class="solution-feature-image">{% if section.settings.hero_image != blank %}{{ section.settings.hero_image | image_url: width: 1000 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '350,550,750,1000', sizes: '(min-width: 990px) 30vw, 60vw', alt: lead.title }}{% elsif lead.featured_image %}{{ lead.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '350,550,750,1000', sizes: '(min-width: 990px) 30vw, 60vw', alt: lead.title }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'home-placeholder' }}{% endif %}</div>
+      <div class="solution-feature-bottom"><h2>{{ lead.title | split: ' — ' | first | split: ' | ' | first | escape }}</h2><span class="solution-feature-price">{{ lead.price | money }}</span></div>
+    </a>{% else %}<div class="home-empty">Select a collection or featured product in the theme editor.</div>{% endif %}
+    <div class="solution-feature-stack">
+      {% if second != blank %}{% render 'home-hero-mini', item: second, number: '02' %}{% endif %}
+      {% if third != blank %}{% render 'home-hero-mini', item: third, number: '03' %}{% endif %}
+      {% if second == blank and third == blank %}<div class="solution-brand-tile">{% render 'icon', name: 'sparkle' %}<span>Useful finds.<br>Everyday possibilities.</span></div>{% endif %}
+    </div>
+    <div class="solution-board-note">{% render 'icon', name: 'sparkle' %}{{ section.settings.board_note | escape }}</div>
+  </div>
+</section>
+{% schema %}
+{"name":"Everyday solutions hero","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"THE EVERYDAY, MADE EASIER"},{"type":"text","id":"heading","label":"First heading line","default":"Small problems."},{"type":"text","id":"heading_second","label":"Second heading line","default":"Better solutions."},{"type":"textarea","id":"description","label":"Description","default":"Discover useful gadgets and clever everyday products that help you save space, simplify tasks, and make daily life easier."},{"type":"text","id":"button_label","label":"Button label","default":"Shop everyday solutions"},{"type":"url","id":"button_link","label":"Button link"},{"type":"collection","id":"collection","label":"Fallback product collection"},{"type":"product","id":"lead_product","label":"Main featured product"},{"type":"product","id":"second_product","label":"Second product"},{"type":"product","id":"third_product","label":"Third product"},{"type":"image_picker","id":"hero_image","label":"Main product image override","info":"Leave empty to use the selected product's own image."},{"type":"select","id":"image_fit","label":"Image fit","default":"contain","options":[{"value":"contain","label":"Show entire product"},{"value":"cover","label":"Fill image area"}]},{"type":"text","id":"board_note","label":"Image board note","default":"One useful find can change your day."}],"presets":[{"name":"Everyday solutions hero"}]}
+{% endschema %}

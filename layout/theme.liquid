@@ -15,7 +15,7 @@
   {{ content_for_header }}
   <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
 </head>
-<body>
+<body{% if request.page_type == 'index' %} class="is-home"{% endif %}>
   <a class="skip-link" href="#MainContent">Skip to content</a>
   {% sections 'header-group' %}
   <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>

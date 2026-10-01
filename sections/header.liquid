@@ -1,4 +1,4 @@
-{% if section.settings.announcement != blank %}<div class="announcement"><span>{{ section.settings.announcement | escape }}</span><a href="{{ routes.all_products_collection_url }}?sort_by=created-descending">Meet your next favourite {% render 'icon', name: 'arrow-up-right' %}</a></div>{% endif %}
+{% if section.settings.announcement != blank %}<div class="announcement"><span>{{ section.settings.announcement | escape }}</span><a href="{{ routes.all_products_collection_url }}">Shop products {% render 'icon', name: 'arrow-up-right' %}</a></div>{% endif %}
 <header class="site-header" data-header>
   <div class="header-inner page-width">
     <a class="brand" href="{{ routes.root_url }}" aria-label="IsBlue home">{% if settings.logo %}{{ settings.logo | image_url: width: 320 | image_tag: width: 160, loading: 'eager', alt: shop.name }}{% else %}<img src="{{ 'isblue-logo.png' | asset_url }}" width="148" height="64" alt="IsBlue">{% endif %}</a>
@@ -11,4 +11,4 @@
     <div class="header-actions"><button class="icon-button" data-open="search-dialog" aria-label="Search">{% render 'icon', name: 'magnifying-glass' %}</button><a class="icon-button account-link" href="{{ routes.account_url }}" aria-label="Account">{% render 'icon', name: 'user' %}</a><a class="bag-button" href="{{ routes.cart_url }}" data-open="cart-dialog" aria-label="Open shopping bag">{% render 'icon', name: 'handbag' %}<span class="bag-label">Bag</span><span class="cart-count" data-cart-count>{{ cart.item_count }}</span></a><button class="icon-button mobile-menu-button" data-open="menu-dialog" aria-label="Open menu">{% render 'icon', name: 'list' %}</button></div>
   </div>
 </header>
-{% schema %}{"name":"Header","settings":[{"type":"text","id":"announcement","label":"Announcement","default":"A little discovery. A better everyday."},{"type":"link_list","id":"menu","label":"Products menu","default":"main-menu"}]}{% endschema %}
+{% schema %}{"name":"Header","settings":[{"type":"text","id":"announcement","label":"Announcement","default":"Cash on delivery available"},{"type":"link_list","id":"menu","label":"Products menu","default":"main-menu"}]}{% endschema %}

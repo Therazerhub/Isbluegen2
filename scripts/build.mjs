@@ -4,7 +4,7 @@ import {build} from 'esbuild';
 const root=path.resolve(import.meta.dirname,'..');process.chdir(root);
 await fs.mkdir('assets',{recursive:true});
 await build({entryPoints:['src/theme.js'],bundle:true,splitting:true,format:'esm',target:'es2020',outdir:'assets',entryNames:'theme',chunkNames:'isblue-[name]-[hash]',minify:true,metafile:true,legalComments:'linked'}).then(async r=>fs.writeFile('build-meta.json',JSON.stringify(r.metafile,null,2)));
-await fs.writeFile('assets/theme.css',(await Promise.all(['src/theme.css','src/product.css','src/chapters.css','src/product-minimal.css'].map(file=>fs.readFile(file,'utf8')))).join('\n'));
+await fs.writeFile('assets/theme.css',(await Promise.all(['src/theme.css','src/product.css','src/chapters.css','src/product-minimal.css','src/home.css'].map(file=>fs.readFile(file,'utf8')))).join('\n'));
 await fs.copyFile('node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2','assets/manrope-latin.woff2');
 const icons=['arrow-up-right','arrow-down','caret-down','magnifying-glass','user','handbag','list','x','plus','sparkle','shield-check','chat-circle-text','asterisk'];
 let iconSnippet='{% case name %}\n';

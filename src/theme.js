@@ -1,5 +1,6 @@
 import {mountChapters,unmountChapters} from './chapters.js';
 import {updatePromotionTimers} from './purchase.js';
+import './home.js';
 mountChapters().catch(()=>{});
 document.addEventListener('shopify:section:load',event=>mountChapters(event.target).catch(()=>{}));
 document.addEventListener('shopify:section:unload',event=>unmountChapters(event.target));

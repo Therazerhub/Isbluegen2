@@ -1,0 +1,18 @@
+<section class="home-problems home-section" data-home-reveal><div class="page-width">
+  <div class="home-section-heading"><div><p class="home-eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading | escape }}</h2><p>{{ section.settings.description | escape }}</p></div></div>
+  <div class="home-problem-grid">{% for block in section.blocks %}
+    {% liquid
+      assign chosen = block.settings.product
+      assign chosen_image = block.settings.image | default: chosen.featured_image
+      assign image_alt = chosen_image.alt | default: block.settings.heading
+      assign destination = block.settings.link | default: block.settings.collection.url | default: chosen.url | default: routes.all_products_collection_url
+    %}
+    <a class="home-problem-card" href="{{ destination }}" {{ block.shopify_attributes }}>
+      <div class="home-problem-copy"><span class="home-problem-index">0{{ forloop.index }} / {{ block.settings.category | escape }}</span><h3>{{ block.settings.heading | escape }}</h3><p>{{ block.settings.description | escape }}</p><span class="home-text-link">{{ block.settings.link_label | escape }}{% render 'icon', name: 'arrow-up-right' %}</span></div>
+      {% if chosen_image %}<div class="home-problem-image">{{ chosen_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300,500,800', sizes: '(min-width: 990px) 30vw, 90vw', alt: image_alt }}</div>{% endif %}
+    </a>
+  {% endfor %}</div>
+</div></section>
+{% schema %}
+{"name":"Shop by everyday problem","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"START WITH WHAT YOU NEED"},{"type":"text","id":"heading","label":"Heading","default":"What could be a little easier?"},{"type":"text","id":"description","label":"Description","default":"Useful ideas for your home, your tasks, and your day."}],"blocks":[{"type":"problem","name":"Everyday problem","settings":[{"type":"text","id":"category","label":"Category","default":"Everyday solutions"},{"type":"text","id":"heading","label":"Problem or benefit heading","default":"Make the everyday easier."},{"type":"textarea","id":"description","label":"Description"},{"type":"text","id":"link_label","label":"Link label","default":"Explore solutions"},{"type":"product","id":"product","label":"Featured product"},{"type":"collection","id":"collection","label":"Linked collection"},{"type":"url","id":"link","label":"Custom link override"},{"type":"image_picker","id":"image","label":"Image override"}]}],"max_blocks":4,"presets":[{"name":"Shop by everyday problem","blocks":[{"type":"problem"},{"type":"problem"},{"type":"problem"}]}]}
+{% endschema %}

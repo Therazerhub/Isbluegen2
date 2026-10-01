@@ -1,0 +1,13 @@
+{% liquid
+  assign chosen_collection = section.settings.collection | default: collections.all
+  assign chosen_products = section.settings.products | default: chosen_collection.products
+%}
+<section class="home-section home-shop page-width" id="shop-solutions" data-home-reveal>
+  <div class="home-section-heading"><div><p class="home-eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading | escape }}</h2><p>{{ section.settings.description | escape }}</p></div><a class="home-text-link" href="{{ chosen_collection.url | default: routes.all_products_collection_url }}">Shop all products{% render 'icon', name: 'arrow-up-right' %}</a></div>
+  <div class="home-product-grid" style="--home-image-fit:{{ section.settings.image_fit }}">
+    {% for item in chosen_products limit: section.settings.limit %}{% render 'home-product-card', item: item %}{% else %}<div class="home-empty"><h3>Useful finds are on their way.</h3><p>Add products to this collection to display them here.</p></div>{% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Shop everyday solutions","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"GOOD IDEAS. REAL USES."},{"type":"text","id":"heading","label":"Heading","default":"Find your everyday fix."},{"type":"text","id":"description","label":"Description","default":"A little less hassle starts here."},{"type":"product_list","id":"products","label":"Handpicked products","limit":8},{"type":"collection","id":"collection","label":"Fallback collection"},{"type":"range","id":"limit","label":"Products shown","min":2,"max":8,"step":1,"default":4},{"type":"select","id":"image_fit","label":"Image fit","default":"contain","options":[{"value":"contain","label":"Show entire product"},{"value":"cover","label":"Fill image area"}]}],"presets":[{"name":"Shop everyday solutions"}]}
+{% endschema %}
