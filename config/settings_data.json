@@ -1,1 +1,24 @@
-{"current":{"accent_color":"#1647ed","color_mode":"light","page_width":1440}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "accent_color": "#1647ed",
+    "color_mode": "light",
+    "page_width": 1440,
+    "content_for_index": [],
+    "blocks": {
+      "12147612498419570842": {
+        "type": "shopify://apps/zapio-bundles-upsell/blocks/zapio-widget/019b220e-8c46-7b31-a4a6-4d6d4848207b",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  }
+}
