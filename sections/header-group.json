@@ -33,13 +33,13 @@
         "ai_gen_block_77a0ea2_zqih48": {
           "type": "ai_gen_block_77a0ea2",
           "settings": {
-            "heading": "CASH ON DELIVERY AVAILABLE  - ✅",
+            "heading": "CASH ON DELIVERY AVAILABLE  - ☑️",
             "message": "",
             "desktop_width_percent": 100,
             "background_color": "#F5F7FF",
             "text_color": "#17213C",
             "border_color": "#D7DFF5",
-            "icon_background": "#1647ED",
+            "icon_background": "#000000",
             "icon_color": "#FFFFFF",
             "font_size": 15,
             "padding": 16,
