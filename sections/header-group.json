@@ -18,15 +18,6 @@
         "menu": "main-menu"
       }
     },
-    "manifesto_itfydw": {
-      "type": "manifesto",
-      "disabled": true,
-      "name": "Brand statement",
-      "settings": {
-        "heading": "",
-        "description": ""
-      }
-    },
     "17908648933fb191d2": {
       "type": "_blocks",
       "blocks": {
@@ -56,7 +47,6 @@
   },
   "order": [
     "header",
-    "manifesto_itfydw",
     "17908648933fb191d2"
   ]
 }

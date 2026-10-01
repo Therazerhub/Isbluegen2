@@ -13,10 +13,10 @@
       "type": "hero",
       "settings": {
         "eyebrow": "",
-        "heading": "Good finds.",
-        "heading_accent": "Better days.",
+        "heading": "Good finds",
+        "heading_accent": "Problem Solving",
         "description": "Useful gadgets, clever home upgrades, and little things that make a big difference.",
-        "button": "Explore the edit",
+        "button": "VIEW PRODUCTS",
         "link": "/collections/all",
         "enable_effect": true,
         "effect_speed": 2
