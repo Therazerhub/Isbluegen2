@@ -41,6 +41,8 @@ The Shopify theme directories (`assets`, `config`, `layout`, `locales`, `section
 The Cinematic Chapters product page is documented in [CINEMATIC-CHAPTERS.md](CINEMATIC-CHAPTERS.md).
 Add chapters in the theme editor or set up the product story metafield for different
 content on each product. Local blender photography and sample chapters are preview-only.
+The default white editorial product page, trust details, variant handling and optional
+sale countdown are documented in [PRODUCT-PAGE-SETUP.md](PRODUCT-PAGE-SETUP.md).
 
 1. In Shopify, connect the GitHub repository and select `main`, or upload `isblue-frequency-theme.zip` as an unpublished theme.
 2. Set the logo and connect the desired collections in the theme editor.

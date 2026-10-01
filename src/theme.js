@@ -1,4 +1,5 @@
 import {mountChapters,unmountChapters} from './chapters.js';
+import {updatePromotionTimers} from './purchase.js';
 mountChapters().catch(()=>{});
 document.addEventListener('shopify:section:load',event=>mountChapters(event.target).catch(()=>{}));
 document.addEventListener('shopify:section:unload',event=>unmountChapters(event.target));
@@ -59,7 +60,7 @@ document.addEventListener('touchend',event=>{
  galleryTouch=null;
 },{passive:true});
 document.addEventListener('touchcancel',()=>galleryTouch=null,{passive:true});
-document.addEventListener('change',e=>{if(e.target.matches('[data-auto-submit]'))e.target.form.requestSubmit();if(e.target.matches('[data-variant-select]')){const page=e.target.closest('[data-product-page]');const variants=JSON.parse(page.querySelector('[data-variants]').textContent);const variant=variants.find(v=>String(v.id)===e.target.value);if(!variant)return;page.querySelector('[data-product-price]').textContent=money(variant.price);page.querySelector('[data-product-compare]').textContent=variant.compare_at_price>variant.price?money(variant.compare_at_price):'';const button=page.querySelector('[data-add-button]');button.disabled=!variant.available;button.textContent=variant.available?'Add to bag':'Sold out';if(variant.featured_media?.id)showMedia(page,variant.featured_media.id);const url=new URL(location.href);url.searchParams.set('variant',variant.id);history.replaceState({},'',url)}});
+document.addEventListener('change',e=>{if(e.target.matches('[data-auto-submit]'))e.target.form.requestSubmit();if(e.target.matches('[data-variant-select]')){const page=e.target.closest('[data-product-page]');const variants=JSON.parse(page.querySelector('[data-variants]').textContent);const variant=variants.find(v=>String(v.id)===e.target.value);if(!variant)return;page.querySelector('[data-product-price]').textContent=money(variant.price);page.querySelector('[data-product-compare]').textContent=variant.compare_at_price>variant.price?money(variant.compare_at_price):'';const button=page.querySelector('[data-add-button]');button.disabled=!variant.available;button.querySelector('[data-add-label]').textContent=variant.available?'Add to bag':'Sold out';const timer=page.querySelector('[data-promotion-timer]');if(timer){timer.dataset.promotionSale=String(variant.compare_at_price>variant.price);updatePromotionTimers(page)}if(variant.featured_media?.id)showMedia(page,variant.featured_media.id);const url=new URL(location.href);url.searchParams.set('variant',variant.id);history.replaceState({},'',url)}});
 // Product media enhancements use delegated events for Shopify section reloads.
 document.addEventListener('pointermove',event=>{
  const target=event.target.closest('[data-product-zoom]');

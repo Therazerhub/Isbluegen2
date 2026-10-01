@@ -32,6 +32,13 @@ export async function mountChapters(scope=document){
     steps.forEach((step,index)=>ScrollTrigger.create({trigger:step,start:'top 65%',end:'bottom 65%',onEnter:()=>activate(index),onEnterBack:()=>activate(index)}));
    }
    if(animated)steps.forEach(step=>{
+    if(section.dataset.layout==='editorial'){
+     const photo=step.querySelector('.chapter-inline-media');
+     const copy=step.querySelector('.chapter-copy');
+     gsap.from(photo,{y:14,opacity:.55,duration:.65,ease:'power2.out',clearProps:'opacity,transform',scrollTrigger:{trigger:photo,start:'top 92%',once:true}});
+     gsap.from(copy.children,{y:10,opacity:0,duration:.5,stagger:.055,ease:'power2.out',clearProps:'opacity,transform',scrollTrigger:{trigger:copy,start:'top 92%',once:true}});
+     return;
+    }
     const targets=cinematic?[step.querySelector('.chapter-copy')]:[step.querySelector('.chapter-inline-media'),step.querySelector('.chapter-copy')];
     gsap.from(targets,{opacity:0,y:24,duration:.7,stagger:.12,ease:'power2.out',clearProps:'opacity,transform',scrollTrigger:{trigger:step,start:'top 88%',once:true}});
    });
