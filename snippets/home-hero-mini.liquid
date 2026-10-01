@@ -1,5 +1,0 @@
-<a class="solution-feature solution-feature-mini" href="{{ item.url }}">
-  <div class="solution-feature-top"><span>{{ item.type | default: 'Everyday essentials' | escape }}</span><span aria-hidden="true">{{ number }}</span></div>
-  <div class="solution-feature-image">{% if item.featured_image %}{{ item.featured_image | image_url: width: 550 | image_tag: loading: 'eager', widths: '200,350,550', sizes: '(min-width: 990px) 18vw, 35vw', alt: item.title }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'home-placeholder' }}{% endif %}</div>
-  <div class="solution-feature-bottom"><h2>{{ item.title | split: ' — ' | first | split: ' | ' | first | escape }}</h2>{% render 'icon', name: 'arrow-up-right' %}</div>
-</a>
