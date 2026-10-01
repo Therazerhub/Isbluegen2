@@ -11,6 +11,7 @@
   <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
   {{ 'manrope-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ 'conversion.css' | asset_url | stylesheet_tag }}
   <style>:root{--accent:{{ settings.accent_color | default: '#1647ed' }};--page-width:{{ settings.page_width | default: 1440 }}px}</style>
   {{ content_for_header }}
   <script type="module" src="{{ 'theme.js' | asset_url }}"></script>

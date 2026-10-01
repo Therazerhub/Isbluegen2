@@ -1,0 +1,41 @@
+<section class="confidence page-width section-space" data-motion-section aria-labelledby="Confidence-{{ section.id }}">
+  <div class="confidence-heading">
+    <p class="eyebrow">SHOP WITH CONFIDENCE</p>
+    <h2 id="Confidence-{{ section.id }}">Premium shopping, without the guesswork.</h2>
+    <p>Clear prices, practical products and flexible ways to pay—built around a smoother everyday shopping experience.</p>
+  </div>
+  <div class="confidence-grid">
+    <article class="confidence-card confidence-card--cod">
+      <div class="confidence-icon">{% render 'icon', name: 'truck' %}</div>
+      <span class="confidence-label">PAY YOUR WAY</span>
+      <h3>Cash on Delivery</h3>
+      <p>Prefer to pay when your order arrives? Choose Cash on Delivery when it is available for your order and location.</p>
+      <a href="{{ routes.all_products_collection_url }}">Shop COD-ready finds {% render 'icon', name: 'arrow-up-right' %}</a>
+    </article>
+    <article class="confidence-card">
+      <div class="confidence-icon">{% render 'icon', name: 'sparkle' %}</div>
+      <span class="confidence-label">THE ISBLUE EDIT</span>
+      <h3>Premium-quality selection</h3>
+      <p>Useful products presented with clear imagery and details, so choosing your next everyday upgrade feels effortless.</p>
+    </article>
+    <article class="confidence-card">
+      <div class="confidence-icon">{% render 'icon', name: 'shield-check' %}</div>
+      <span class="confidence-label">PROTECTED CHECKOUT</span>
+      <h3>Secure by Shopify</h3>
+      <p>Your checkout runs through Shopify's secure commerce infrastructure, with order details reviewed before payment.</p>
+    </article>
+    <article class="confidence-card">
+      <div class="confidence-icon">{% render 'icon', name: 'chat-circle-text' %}</div>
+      <span class="confidence-label">HUMAN HELP</span>
+      <h3>Support when you need it</h3>
+      <p>Questions before or after ordering? Our support route is easy to find and ready for the practical stuff.</p>
+    </article>
+  </div>
+  <div class="confidence-steps" aria-label="How shopping works">
+    <div><span>01</span><strong>Choose your upgrade</strong><small>Explore clear product pages and real pricing.</small></div>
+    <div><span>02</span><strong>Pick your payment</strong><small>Use online payment or eligible Cash on Delivery.</small></div>
+    <div><span>03</span><strong>Review and order</strong><small>Confirm your details securely at checkout.</small></div>
+  </div>
+  <aside class="mobile-conversion-bar" aria-label="Quick shopping link"><div><strong>Cash on Delivery</strong><span>Available on eligible orders</span></div><a href="#bestsellers">Shop best sellers</a></aside>
+</section>
+{% schema %}{"name":"Conversion confidence","settings":[],"presets":[{"name":"Conversion confidence"}]}{% endschema %}

@@ -12,91 +12,95 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "",
-        "heading": "Good finds",
-        "heading_accent": "Problem Solving",
-        "description": "Useful gadgets, clever home upgrades, and little things that make a big difference.",
-        "button": "VIEW PRODUCTS",
-        "link": "/collections/all",
-        "enable_effect": true,
-        "effect_speed": 2
+        "eyebrow": "THE ISBLUE PREMIUM EDIT",
+        "heading": "Premium finds.",
+        "heading_accent": "Live smarter.",
+        "description": "Quality-focused gadgets, home upgrades and personal essentials selected to make everyday routines feel easier.",
+        "button": "SHOP BEST SELLERS",
+        "link": "/collections/all?sort_by=best-selling",
+        "featured_product": "9-in-1-electric-spin-scrubber",
+        "secondary_product": "wireless-earbuds",
+        "tertiary_product": "travel-portable-mini-juice-blender-1"
       }
     },
     "products": {
       "type": "product-rail",
       "settings": {
-        "heading": "Worth a spot in your day.",
-        "description": "A few of our favourite everyday discoveries.",
+        "eyebrow": "BEST SELLERS · COD AVAILABLE",
+        "heading": "Start with the favourites.",
+        "description": "Premium everyday upgrades selected for usefulness, quality and unmistakable IsBlue style.",
         "products": [
-          "mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
-          "travel-portable-mini-juice-blender",
-          "foldable-storage",
-          "lotus-reflection-water-sensor-diyapack-of-12"
+          "9-in-1-electric-spin-scrubber",
+          "travel-portable-mini-juice-blender-1",
+          "mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
+          "wireless-earbuds",
+          "ultrasonic-cleaner",
+          "portable-micro-steam-iron-green-iron-handheld-garment-steamer"
         ],
         "collection": "all",
-        "limit": 4,
-        "link_label": "Shop all finds",
+        "limit": 6,
+        "link_label": "Shop all products",
         "anchor": "bestsellers"
       }
+    },
+    "confidence": {
+      "type": "conversion-confidence",
+      "settings": {}
     },
     "categories": {
       "type": "categories",
       "blocks": {
-        "tech": {
+        "clean": {
           "type": "category",
           "settings": {
-            "title": "Smart little things.",
-            "subtitle": "Good ideas. Pocket sized.",
-            "link": "/products/mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
-            "product": "",
-            "fallback": "printer"
+            "title": "Clean smarter.",
+            "subtitle": "Less effort. Better everyday spaces.",
+            "link": "/products/9-in-1-electric-spin-scrubber",
+            "product": "9-in-1-electric-spin-scrubber",
+            "fallback": "storage"
           }
         },
-        "home": {
+        "care": {
           "type": "category",
           "settings": {
-            "title": "Room for better.",
-            "subtitle": "Home, with a little more thought.",
-            "link": "/products/foldable-storage",
-            "product": "",
-            "fallback": "storage"
+            "title": "Feel ready.",
+            "subtitle": "Compact personal care, beautifully considered.",
+            "link": "/products/mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
+            "product": "mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
+            "fallback": "printer"
           }
         },
         "life": {
           "type": "category",
           "settings": {
-            "title": "Take the good with you.",
-            "subtitle": "Everyday, on your terms.",
-            "link": "/products/travel-portable-mini-juice-blender",
-            "product": "",
+            "title": "Live better.",
+            "subtitle": "Useful design for life on the move.",
+            "link": "/products/travel-portable-mini-juice-blender-1",
+            "product": "travel-portable-mini-juice-blender-1",
             "fallback": "blender"
           }
         }
       },
-      "block_order": [
-        "tech",
-        "home",
-        "life"
-      ],
+      "block_order": ["clean", "care", "life"],
       "settings": {
-        "heading": "Whatever your everyday looks like.",
-        "description": "Find a little something for every part of it."
+        "heading": "Shop by the life you want to make easier.",
+        "description": "Focused edits for the routines that deserve a smarter upgrade."
       }
     },
     "statement": {
       "type": "manifesto",
       "settings": {
-        "heading": "Life is in the little things. Make yours a little better.",
-        "description": "The handy. The unexpected. The how-did-I-live-without-it. That's our kind of good find."
+        "heading": "Premium does not have to mean complicated.",
+        "description": "IsBlue brings together clever products, considered presentation and a checkout experience built to feel clear from first look to final order."
       }
     },
     "spotlight": {
       "type": "spotlight",
       "settings": {
-        "product": "mini-bluetooth-thermal-printer-inkless-pocket-printer-for-mobile-label-sticker-printer",
-        "eyebrow": "SMALL FIND. BIG POSSIBILITIES.",
-        "heading": "From your phone. Into your world.",
-        "description": "Notes, labels, little memories. Meet the pocket printer that gives your ideas somewhere to go."
+        "product": "9-in-1-electric-spin-scrubber",
+        "eyebrow": "PREMIUM PICK · CASH ON DELIVERY",
+        "heading": "A cleaner home, with less effort.",
+        "description": "Meet the versatile everyday upgrade customers notice first—presented with clear pricing, premium imagery and an easier path to checkout."
       }
     },
     "newsletter": {
@@ -107,6 +111,7 @@
   "order": [
     "hero",
     "products",
+    "confidence",
     "categories",
     "statement",
     "spotlight",
