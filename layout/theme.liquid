@@ -12,9 +12,15 @@
   {{ 'manrope-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
   {{ 'conversion.css' | asset_url | stylesheet_tag }}
+  {{ 'isblue-home-foundation.css' | asset_url | stylesheet_tag }}
+  {{ 'isblue-homepage.css' | asset_url | stylesheet_tag }}
   <style>:root{--accent:{{ settings.accent_color | default: '#1647ed' }};--page-width:{{ settings.page_width | default: 1440 }}px}</style>
   {{ content_for_header }}
   <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+  <script src="{{ 'isblue-gsap.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'isblue-scrolltrigger.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'isblue-motion.js' | asset_url }}" defer></script>
+  <script src="{{ 'isblue-hover-cart.js' | asset_url }}" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#MainContent">Skip to content</a>

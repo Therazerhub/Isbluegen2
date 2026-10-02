@@ -1,0 +1,26 @@
+/* Compatibility foundation for the IsBlue reference homepage on Gen2. */
+:root{--ib-blue:#0b63f6;--ib-cyan:#00bafa;--ib-ink:#101827;--ib-muted:#64748b;--ib-line:#e8edf5}
+.ib{font-family:var(--font-body--family,Manrope),Arial,sans-serif;color:var(--ib-ink);font-size:14px;line-height:1.5}
+.ib *{box-sizing:border-box}
+.ib a{text-decoration:none;color:inherit}
+.ib h1,.ib h2,.ib h3,.ib p{margin:0}
+.ib h1,.ib h2,.ib h3{font-family:var(--font-heading--family,Manrope),Arial,sans-serif;font-style:normal;text-transform:none}
+.ib button,.ib input{font:inherit}
+.ib-wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+.ib-logo{display:inline-flex;align-items:center;gap:10px;color:#0b63f6}
+.ib-logo>svg{width:34px;height:41px;flex:none}
+.ib-logo>span{display:flex;flex-direction:column}
+.ib-wordmark{color:#101827;font-size:28px;font-weight:800;letter-spacing:-.06em;line-height:.9}
+.ib-wordmark>span{color:#0b63f6}
+.ib-logo small{margin-top:4px;color:#64748b;font-size:7px;font-weight:600;letter-spacing:.03em}
+.ib-logo-image{display:block;max-width:min(180px,36vw);object-fit:contain}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.ib :where(a,button,summary,input):focus-visible{outline:3px solid #00a9e8;outline-offset:3px}
+.ib-products-menu{position:relative}
+.ib-products-menu>summary{list-style:none;cursor:pointer}
+.ib-products-menu>summary::-webkit-details-marker{display:none}
+.ib-products-menu__panel{position:absolute;top:calc(100% + 6px);left:50%;z-index:50;width:min(300px,80vw);padding:10px;transform:translateX(-50%);border:1px solid #e3eaf4;background:#fff}
+.ib-products-menu__panel a{display:block;padding:11px 13px;border-radius:9px;font-size:13px;color:#263550}
+.ib-products-menu__panel a:hover,.ib-products-menu__panel a:focus-visible{background:#eef5ff;color:#0b63f6}
+@media(max-width:850px){.ib-wrap{width:min(100% - 32px,1180px)}}
+@media(max-width:540px){.ib-wrap{width:min(100% - 28px,1180px)}.ib-wordmark{font-size:25px}.ib-logo>svg{width:29px;height:34px}}

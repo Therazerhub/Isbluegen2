@@ -1,0 +1,56 @@
+<div class="ib ib-home-footer">
+  <div class="ib-wrap ib-home-newsletter">
+    <div><h2>{{ section.settings.newsletter_heading | escape }}</h2><p>{{ section.settings.newsletter_text | escape }}</p></div>
+    {% assign newsletter_id = 'IsBlueNewsletter-' | append: section.id %}
+    {% form 'customer', id: newsletter_id, class: 'ib-home-newsletter__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label for="Email-{{ section.id }}">Email address</label>
+      <div class="ib-home-newsletter__field">
+        <input id="Email-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" placeholder="{{ section.settings.email_placeholder | escape }}" required{% if form.errors %} aria-invalid="true" aria-describedby="NewsletterError-{{ section.id }}"{% endif %}>
+        <button type="submit">{{ section.settings.subscribe_label | escape }}</button>
+      </div>
+      {% if form.posted_successfully? %}<p class="ib-home-newsletter__status" role="status">{{ section.settings.newsletter_success | escape }}</p>{% endif %}
+      {% if form.errors %}<p id="NewsletterError-{{ section.id }}" class="ib-home-newsletter__error" role="alert">Please enter a valid email address.</p>{% endif %}
+    {% endform %}
+  </div>
+
+  <div class="ib-wrap ib-home-footer__grid">
+    <div class="ib-home-footer__brand">
+      <a href="{{ routes.root_url }}" aria-label="IsBlue home">{% render 'isblue-logo' %}</a>
+      <p>{{ section.settings.description | escape }}</p>
+      <div class="ib-home-footer__socials">
+        {% if section.settings.instagram != blank %}<a href="{{ section.settings.instagram }}" aria-label="Instagram">Instagram</a>{% endif %}
+        {% if section.settings.facebook != blank %}<a href="{{ section.settings.facebook }}" aria-label="Facebook">Facebook</a>{% endif %}
+        {% if section.settings.pinterest != blank %}<a href="{{ section.settings.pinterest }}" aria-label="Pinterest">Pinterest</a>{% endif %}
+      </div>
+    </div>
+    <nav aria-label="Quick links"><h2>{{ section.settings.shop_heading | escape }}</h2>{% if section.settings.shop_menu.links.size > 0 %}{% for link in section.settings.shop_menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% else %}<a href="{{ routes.root_url }}">Home</a><a href="{{ routes.all_products_collection_url }}">Shop</a><a href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>{% if pages['about'] != blank %}<a href="{{ pages['about'].url }}">About Us</a>{% endif %}{% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}{% endif %}</nav>
+    <nav aria-label="Customer care"><h2>{{ section.settings.help_heading | escape }}</h2>{% for link in section.settings.help_menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}{% if shop.customer_accounts_enabled %}<a href="{{ routes.account_url }}">My Account</a>{% endif %}</nav>
+    <div class="ib-home-footer__contact"><h2>Contact</h2>{% if shop.email != blank %}<a href="mailto:{{ shop.email }}">{{ shop.email }}</a>{% endif %}{% if section.settings.phone != blank %}<a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone | escape }}</a>{% endif %}{% if section.settings.location != blank %}<p>{{ section.settings.location | escape }}</p>{% endif %}</div>
+  </div>
+
+  <div class="ib-wrap ib-home-footer__bottom"><p>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. All rights reserved.</p>{% if shop.enabled_payment_types.size > 0 %}<div class="ib-home-footer__payments" aria-label="Accepted payment methods">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{% endfor %}</div>{% endif %}</div>
+</div>
+
+{% schema %}
+{
+  "name": "IsBlue footer",
+  "settings": [
+    { "type": "textarea", "id": "description", "label": "Brand description", "default": "Good Products. Brighter Days." },
+    { "type": "link_list", "id": "help_menu", "label": "Customer care menu", "default": "footer" },
+    { "type": "link_list", "id": "shop_menu", "label": "Quick links menu" },
+    { "type": "text", "id": "shop_heading", "label": "Quick links heading", "default": "Quick Links" },
+    { "type": "text", "id": "help_heading", "label": "Customer care heading", "default": "Customer Care" },
+    { "type": "url", "id": "instagram", "label": "Instagram profile" },
+    { "type": "url", "id": "facebook", "label": "Facebook profile" },
+    { "type": "url", "id": "pinterest", "label": "Pinterest profile" },
+    { "type": "text", "id": "phone", "label": "Phone number" },
+    { "type": "text", "id": "location", "label": "Location", "default": "Pune, India" },
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Be the First to Know" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Newsletter description", "default": "Get exclusive offers, new product launches and special discounts straight to your inbox." },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "Enter your email address" },
+    { "type": "text", "id": "subscribe_label", "label": "Subscribe button", "default": "Subscribe" },
+    { "type": "text", "id": "newsletter_success", "label": "Success message", "default": "You are on the list. Welcome to IsBlue!" }
+  ]
+}
+{% endschema %}

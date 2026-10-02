@@ -1,0 +1,71 @@
+<header class="ib ib-header{% if section.settings.sticky_header %} ib-header--sticky{% endif %}" data-section-id="{{ section.id }}">
+  <div class="ib-topbar">
+    <div class="ib-wrap ib-topbar__inner">
+      <p class="ib-topbar__message">{% render 'isblue-icon', icon: 'truck' %}<span>{{ section.settings.announcement | escape }}</span></p>
+      <nav class="ib-topbar__links" aria-label="Utility navigation">
+        <a href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
+        {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
+        <span aria-label="Store country and currency">{{ localization.country.iso_code }} · {{ cart.currency.iso_code }}</span>
+      </nav>
+    </div>
+  </div>
+
+  <div class="ib-wrap ib-header-row">
+    <a href="{{ routes.root_url }}" class="ib-brand" aria-label="{{ shop.name | escape }} home">{% render 'isblue-logo' %}</a>
+
+    <nav class="ib-primary-nav" aria-label="Main navigation">
+      <a class="ib-primary-nav__link" href="{{ routes.root_url }}">Home</a>
+      <a class="ib-primary-nav__link" href="{{ routes.all_products_collection_url }}">Shop</a>
+      <details class="ib-products-menu">
+        <summary>{{ section.settings.products_label | escape }} <span aria-hidden="true">⌄</span></summary>
+        <div class="ib-products-menu__panel">
+          {% if section.settings.menu.links.size > 0 %}
+            {% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}
+          {% else %}
+            <a href="{{ routes.all_products_collection_url }}">{{ section.settings.shop_all_label | escape }}</a>
+          {% endif %}
+        </div>
+      </details>
+      <a class="ib-primary-nav__link" href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
+      {% if pages['about'] != blank %}<a class="ib-primary-nav__link" href="{{ pages['about'].url }}">About</a>{% endif %}
+    </nav>
+
+    <div class="ib-header-actions">
+      <a class="ib-header-search" href="{{ routes.search_url }}" aria-label="{{ section.settings.search_label | escape }}">
+        {% render 'isblue-icon', icon: 'search' %}<span class="visually-hidden">{{ section.settings.search_label | escape }}</span>
+      </a>
+      {% if shop.customer_accounts_enabled %}<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" aria-label="My account">{% render 'isblue-icon', icon: 'user' %}<span class="visually-hidden">{{ section.settings.account_label | escape }}</span></a>{% endif %}
+      <a class="ib-cart-link" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items">
+        {% render 'isblue-icon', icon: 'cart' %}<span class="ib-cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+
+    <details class="ib-mobile-nav">
+      <summary aria-label="Open navigation" aria-haspopup="menu"><span aria-hidden="true">☰</span></summary>
+      <nav aria-label="Mobile navigation">
+        <a href="{{ routes.root_url }}">Home</a>
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+        {% if section.settings.menu.links.size > 0 %}{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% endif %}
+        <a href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
+        {% if pages['about'] != blank %}<a href="{{ pages['about'].url }}">About</a>{% endif %}
+        {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
+      </nav>
+    </details>
+  </div>
+</header>
+{% if section.settings.sticky_header %}<style>#shopify-section-{{ section.id }}{position:sticky;top:0;z-index:40}</style>{% endif %}
+
+{% schema %}
+{
+  "name": "IsBlue header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Products menu", "default": "main-menu" },
+    { "type": "text", "id": "products_label", "label": "Products menu label", "default": "Products" },
+    { "type": "text", "id": "shop_all_label", "label": "Fallback products link", "default": "Shop all products" },
+    { "type": "text", "id": "search_label", "label": "Search label", "default": "Search" },
+    { "type": "text", "id": "account_label", "label": "Account label", "default": "Account" },
+    { "type": "text", "id": "announcement", "label": "Announcement", "default": "Cash on Delivery Available" },
+    { "type": "checkbox", "id": "sticky_header", "label": "Enable sticky header", "default": true }
+  ]
+}
+{% endschema %}

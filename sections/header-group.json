@@ -12,42 +12,17 @@
   "name": "Header",
   "sections": {
     "header": {
-      "type": "header",
+      "type": "isblue-header",
       "settings": {
-        "announcement": "Cash on Delivery available · Premium everyday finds",
-        "menu": "main-menu"
+        "menu": "main-menu",
+        "products_label": "Products",
+        "shop_all_label": "Shop all products",
+        "search_label": "Search",
+        "account_label": "Account",
+        "announcement": "Cash on Delivery Available",
+        "sticky_header": true
       }
-    },
-    "17908648933fb191d2": {
-      "type": "_blocks",
-      "disabled": true,
-      "blocks": {
-        "ai_gen_block_77a0ea2_zqih48": {
-          "type": "ai_gen_block_77a0ea2",
-          "settings": {
-            "heading": "CASH ON DELIVERY AVAILABLE  - ✅",
-            "message": "",
-            "desktop_width_percent": 100,
-            "background_color": "#F5F7FF",
-            "text_color": "#17213C",
-            "border_color": "#D7DFF5",
-            "icon_background": "#0063F6",
-            "icon_color": "#FFFFFF",
-            "font_size": 15,
-            "padding": 16,
-            "corner_radius": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_77a0ea2_zqih48"
-      ],
-      "settings": {}
     }
   },
-  "order": [
-    "header",
-    "17908648933fb191d2"
-  ]
+  "order": ["header"]
 }

@@ -9,112 +9,41 @@
  */
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {
-        "eyebrow": "THE ISBLUE PREMIUM EDIT",
-        "heading": "Premium finds.",
-        "heading_accent": "Live smarter.",
-        "description": "Quality-focused gadgets, home upgrades and personal essentials selected to make everyday routines feel easier.",
-        "button": "SHOP BEST SELLERS",
-        "link": "/collections/all?sort_by=best-selling",
-        "featured_product": "9-in-1-electric-spin-scrubber",
-        "secondary_product": "wireless-earbuds",
-        "tertiary_product": "travel-portable-mini-juice-blender-1"
-      }
-    },
-    "products": {
-      "type": "product-rail",
-      "settings": {
-        "eyebrow": "BEST SELLERS · COD AVAILABLE",
-        "heading": "Start with the favourites.",
-        "description": "Premium everyday upgrades selected for usefulness, quality and unmistakable IsBlue style.",
-        "products": [
-          "9-in-1-electric-spin-scrubber",
-          "travel-portable-mini-juice-blender-1",
-          "mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
-          "wireless-earbuds",
-          "ultrasonic-cleaner",
-          "portable-micro-steam-iron-green-iron-handheld-garment-steamer"
-        ],
-        "collection": "all",
-        "limit": 6,
-        "link_label": "Shop all products",
-        "anchor": "bestsellers"
-      }
-    },
-    "confidence": {
-      "type": "conversion-confidence",
-      "settings": {}
-    },
-    "categories": {
-      "type": "categories",
+    "hero": { "type": "isblue-hero", "settings": {} },
+    "trust": {
+      "type": "isblue-benefits",
+      "settings": {},
       "blocks": {
-        "clean": {
-          "type": "category",
-          "settings": {
-            "title": "Clean smarter.",
-            "subtitle": "Less effort. Better everyday spaces.",
-            "link": "/products/9-in-1-electric-spin-scrubber",
-            "product": "9-in-1-electric-spin-scrubber",
-            "fallback": "storage"
-          }
-        },
-        "care": {
-          "type": "category",
-          "settings": {
-            "title": "Feel ready.",
-            "subtitle": "Compact personal care, beautifully considered.",
-            "link": "/products/mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
-            "product": "mini-shave-portable-electric-shaver-2023-new-upgrade-mini-electric-razor-shavers-for-men-d3vkhqh8bkb3qou0s0jg",
-            "fallback": "printer"
-          }
-        },
-        "life": {
-          "type": "category",
-          "settings": {
-            "title": "Live better.",
-            "subtitle": "Useful design for life on the move.",
-            "link": "/products/travel-portable-mini-juice-blender-1",
-            "product": "travel-portable-mini-juice-blender-1",
-            "fallback": "blender"
-          }
-        }
+        "shipping": { "type": "benefit", "settings": { "icon": "truck", "title": "Free Shipping", "text": "On orders above ₹499" } },
+        "payments": { "type": "benefit", "settings": { "icon": "shield", "title": "Secure Payments", "text": "Protected online checkout" } },
+        "cod": { "type": "benefit", "settings": { "icon": "cash", "title": "Cash on Delivery", "text": "Available on eligible orders" } },
+        "support": { "type": "benefit", "settings": { "icon": "headphones", "title": "24/7 Support", "text": "We are here to help" } }
       },
-      "block_order": ["clean", "care", "life"],
-      "settings": {
-        "heading": "Shop by the life you want to make easier.",
-        "description": "Focused edits for the routines that deserve a smarter upgrade."
-      }
+      "block_order": ["shipping", "payments", "cod", "support"]
     },
-    "statement": {
-      "type": "manifesto",
-      "settings": {
-        "heading": "Premium does not have to mean complicated.",
-        "description": "IsBlue brings together clever products, considered presentation and a checkout experience built to feel clear from first look to final order."
-      }
+    "products": { "type": "isblue-products", "settings": { "kicker": "POPULAR RIGHT NOW", "title": "Products", "description": "Useful products chosen for everyday life.", "limit": 4 } },
+    "showcase": { "type": "isblue-showcase", "settings": {} },
+    "values": {
+      "type": "isblue-values",
+      "settings": {},
+      "blocks": {
+        "quality": { "type": "value", "settings": { "icon": "shield", "title": "Thoughtfully Selected", "text": "Products chosen with care" } },
+        "price": { "type": "value", "settings": { "icon": "tag", "title": "Fair Prices", "text": "Great value for everyday shopping" } },
+        "useful": { "type": "value", "settings": { "icon": "spark", "title": "Trending & Useful", "text": "Products you will actually use" } },
+        "trusted": { "type": "value", "settings": { "icon": "heart", "title": "Made for India", "text": "Cash on Delivery available" } }
+      },
+      "block_order": ["quality", "price", "useful", "trusted"]
     },
-    "spotlight": {
-      "type": "spotlight",
-      "settings": {
-        "product": "9-in-1-electric-spin-scrubber",
-        "eyebrow": "PREMIUM PICK · CASH ON DELIVERY",
-        "heading": "A cleaner home, with less effort.",
-        "description": "Meet the versatile everyday upgrade customers notice first—presented with clear pricing, premium imagery and an easier path to checkout."
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {}
+    "testimonials": {
+      "type": "isblue-testimonials",
+      "settings": {},
+      "blocks": {
+        "review1": { "type": "testimonial", "settings": { "quote": "Really useful product. Quality is great and delivery was fast. Will definitely order again.", "name": "Aarav S.", "location": "Pune, MH" } },
+        "review2": { "type": "testimonial", "settings": { "quote": "Perfect for my daily needs. Exactly as shown and works really well.", "name": "Riya K.", "location": "Mumbai, MH" } },
+        "review3": { "type": "testimonial", "settings": { "quote": "Amazing service and product quality. The packaging was excellent too.", "name": "Vikram P.", "location": "Bengaluru, KA" } }
+      },
+      "block_order": ["review1", "review2", "review3"]
     }
   },
-  "order": [
-    "hero",
-    "products",
-    "confidence",
-    "categories",
-    "statement",
-    "spotlight",
-    "newsletter"
-  ]
+  "order": ["hero", "trust", "products", "showcase", "values", "testimonials"]
 }

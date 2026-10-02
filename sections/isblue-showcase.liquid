@@ -1,0 +1,24 @@
+<section class="ib ib-wrap ib-home-banner" aria-labelledby="Showcase-{{ section.id }}">
+  <div class="ib-home-banner__media">
+    {% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '720,1080,1440,1800', sizes: '(max-width: 767px) 100vw, 1200px' }}{% else %}<img src="{{ 'isblue-home-banner-v2.webp' | asset_url }}" width="1536" height="1024" alt="A warm lamp and plant in a modern home" loading="lazy">{% endif %}
+  </div>
+  <div class="ib-home-banner__copy">
+    <h2 id="Showcase-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <p>{{ section.settings.description | escape }}</p>
+    <a class="ib-home-button ib-home-button--light" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.button | escape }} {% render 'isblue-icon', icon: 'arrow' %}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IsBlue showcase banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Banner image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Smart Products For a Smarter You" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "From daily essentials to useful gadgets, discover products that make life easier." },
+    { "type": "text", "id": "button", "label": "Button label", "default": "Shop Now" },
+    { "type": "url", "id": "link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "IsBlue showcase banner" }]
+}
+{% endschema %}

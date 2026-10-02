@@ -1,0 +1,41 @@
+<section class="ib ib-wrap ib-home-hero" aria-labelledby="IsBlueHero-{{ section.id }}">
+  <div class="ib-home-hero__surface">
+    <div class="ib-home-hero-copy">
+      {% if section.settings.eyebrow != blank %}<p class="ib-home-kicker">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h1 id="IsBlueHero-{{ section.id }}">{{ section.settings.heading | escape }} <span>{{ section.settings.accent | escape }}</span></h1>
+      <p class="ib-home-hero__description">{{ section.settings.description | escape }}</p>
+      <a class="ib-home-button ib-home-button--dark" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.button | escape }} {% render 'isblue-icon', icon: 'arrow' %}</a>
+      <div class="ib-home-hero__proof" aria-label="Shopping benefits">
+        <div class="ib-home-hero__avatars" aria-hidden="true"><span>IB</span><span>✓</span><span>₹</span></div>
+        <p><strong>{{ section.settings.proof_title | escape }}</strong><span>{{ section.settings.proof_text | escape }}</span></p>
+      </div>
+    </div>
+    <div class="ib-home-hero__media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: class: 'ib-home-hero-image ib-hero-image', fetchpriority: 'high', widths: '640,960,1280,1800', sizes: '(max-width: 767px) 100vw, 58vw' }}
+      {% else %}
+        <img class="ib-home-hero-image ib-hero-image" src="{{ 'isblue-home-hero-v2.webp' | asset_url }}" width="1536" height="1024" alt="A curated selection of everyday products on a blue studio display" fetchpriority="high">
+      {% endif %}
+      {% if section.settings.media_note != blank %}<p class="ib-home-hero__media-note">{{ section.settings.media_note | escape }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IsBlue modern hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Hero artwork" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "GOOD PRODUCTS. BRIGHTER DAYS." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everyday Solutions for a" },
+    { "type": "text", "id": "accent", "label": "Blue heading", "default": "Better Tomorrow" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Discover useful, innovative and high-quality products for a smarter, easier and happier life." },
+    { "type": "text", "id": "button", "label": "Button label", "default": "Shop Now" },
+    { "type": "url", "id": "link", "label": "Button link" },
+    { "type": "text", "id": "proof_title", "label": "Proof heading", "default": "Shopping made simple" },
+    { "type": "text", "id": "proof_text", "label": "Proof text", "default": "Secure payments and Cash on Delivery" },
+    { "type": "text", "id": "media_note", "label": "Image note", "default": "Useful finds for brighter days" }
+  ],
+  "presets": [{ "name": "IsBlue modern hero" }]
+}
+{% endschema %}

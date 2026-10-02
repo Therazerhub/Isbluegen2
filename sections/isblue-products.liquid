@@ -1,0 +1,41 @@
+<section class="ib ib-wrap ib-home-products" aria-labelledby="Products-{{ section.id }}">
+  <header class="ib-home-section-heading">
+    <div>{% if section.settings.kicker != blank %}<p class="ib-home-kicker">{{ section.settings.kicker | escape }}</p>{% endif %}<h2 id="Products-{{ section.id }}">{{ section.settings.title | escape }}</h2>{% if section.settings.description != blank %}<p>{{ section.settings.description | escape }}</p>{% endif %}</div>
+    <a class="ib-home-outline-link" href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}">View All {% render 'isblue-icon', icon: 'arrow' %}</a>
+  </header>
+  {% assign featured = section.settings.collection %}{% if featured == blank %}{% assign featured = collections.all %}{% endif %}
+  <div class="ib-home-product-grid ib-product-grid">
+    {% for product in featured.products limit: section.settings.limit %}
+      <article class="ib-product-card" data-product-url="{{ product.url }}">
+        <a class="ib-product-card-link" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+          <div class="ib-product-image">
+            {% if product.featured_image %}{{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '240,360,520,700', sizes: '(max-width: 600px) 47vw, (max-width: 1000px) 25vw, 22vw' }}{% else %}{{ 'product-1' | placeholder_svg_tag: 'ib-placeholder' }}{% endif %}
+            {% if product.available == false %}<span class="ib-badge">Sold out</span>{% elsif product.compare_at_price > product.price %}{% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}<span class="ib-badge">Save {{ discount }}%</span>{% endif %}
+          </div>
+        </a>
+        <div class="ib-product-info">
+          <a href="{{ product.url }}"><h3>{{ product.title | escape }}</h3></a>
+          {% if product.metafields.reviews.rating.value != blank %}<p class="ib-rating"><span aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated </span>{{ product.metafields.reviews.rating.value.rating }}{% if product.metafields.reviews.rating_count != blank %} ({{ product.metafields.reviews.rating_count }}){% endif %}</p>{% endif %}
+          <p class="ib-price">{% if product.price_varies %}<small>From </small>{% endif %}{{ product.price | money }}{% if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif %}</p>
+          {% if product.available %}{% assign hover_variant = product.selected_or_first_available_variant %}<div class="ib-hover-buttons"><button class="ib-hover-atc" type="button" data-hover-add data-variant-id="{{ hover_variant.id }}">Add to Cart</button></div>{% else %}<a class="ib-view-product" href="{{ product.url }}">View product</a>{% endif %}
+        </div>
+      </article>
+    {% else %}
+      {% for i in (1..4) %}<article class="ib-product-card ib-product-card--placeholder"><div class="ib-product-image">{{ 'product-' | append: i | placeholder_svg_tag }}</div><div class="ib-product-info"><h3>Product title</h3><p class="ib-price">{{ 99900 | money }}</p><a class="ib-view-product" href="{{ routes.all_products_collection_url }}">View products</a></div></article>{% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IsBlue products",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Small label", "default": "POPULAR RIGHT NOW" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Products" },
+    { "type": "text", "id": "description", "label": "Description", "default": "Useful products chosen for everyday life." },
+    { "type": "collection", "id": "collection", "label": "Product collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 3, "max": 8, "step": 1, "default": 4 }
+  ],
+  "presets": [{ "name": "IsBlue products" }]
+}
+{% endschema %}
