@@ -21,7 +21,7 @@
       },
       "block_order": ["shipping", "payments", "cod", "support"]
     },
-    "products": { "type": "isblue-products", "settings": { "kicker": "POPULAR RIGHT NOW", "title": "Products", "description": "Useful products chosen for everyday life.", "limit": 4 } },
+    "products": { "type": "isblue-products", "settings": { "kicker": "Popular Right Now", "title": "Products", "description": "Useful products chosen for everyday life.", "limit": 4 } },
     "showcase": { "type": "isblue-showcase", "settings": {} },
     "values": {
       "type": "isblue-values",
