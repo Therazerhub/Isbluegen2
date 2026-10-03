@@ -19,6 +19,11 @@
         "type": "shopify://apps/zapio-bundles-upsell/blocks/zapio-widget/019b220e-8c46-7b31-a4a6-4d6d4848207b",
         "disabled": false,
         "settings": {}
+      },
+      "13669795325273674392": {
+        "type": "shopify://apps/releasit-cod-form/blocks/app-embed/72faf214-4174-4fec-886b-0d0e8d3af9a2",
+        "disabled": false,
+        "settings": {}
       }
     }
   }
