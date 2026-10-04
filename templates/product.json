@@ -89,10 +89,10 @@
     "details": {
       "type": "product-details",
       "settings": {
-        "reveal": false,
+        "reveal": true,
         "show_videos": true,
         "video_heading": "See it in action.",
-        "details_heading": "Good to know."
+        "details_heading": ""
       }
     },
     "related": {
