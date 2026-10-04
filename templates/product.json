@@ -11,17 +11,14 @@
   "sections": {
     "main": {
       "type": "main-product",
-      "settings": {
-        "design": "minimal",
-        "show_promotion_timer": true
-      },
       "blocks": {
         "secure": {
           "type": "trust_badge",
           "settings": {
             "icon": "shield-check",
             "heading": "Secure checkout",
-            "caption": "Protected payment"
+            "caption": "Protected payment",
+            "link": ""
           }
         },
         "help": {
@@ -47,47 +44,68 @@
         "secure",
         "help",
         "shipping"
-      ]
+      ],
+      "settings": {
+        "design": "minimal",
+        "zoom": true,
+        "reveal": true,
+        "dynamic_checkout": true,
+        "sticky_info": true,
+        "show_promotion_timer": true,
+        "promotion_label": "Offer ends in",
+        "promotion_ends_at": ""
+      }
     },
     "chapters": {
       "type": "product-chapters",
       "settings": {
+        "source": "product",
+        "eyebrow": "A closer look",
+        "heading": "Small details. Everyday difference.",
         "layout": "editorial",
+        "motion": true,
+        "image_fit": "contain",
         "background": "#ffffff",
         "text_color": "#171717",
         "accent": "#626262",
-        "heading": "Small details. Everyday difference.",
         "spacing": 40,
         "radius": 8
+      }
+    },
+    "lens": {
+      "type": "product-lens",
+      "disabled": true,
+      "settings": {
+        "enabled": true,
+        "eyebrow": "THE DETAILS",
+        "heading": "Look a little closer.",
+        "caption": "",
+        "footer_text": "A closer view of the things worth noticing.",
+        "image_fit": "contain",
+        "accent_color": "#1859d3",
+        "background_color": "#f4f8ff"
       }
     },
     "details": {
       "type": "product-details",
       "settings": {
-        "details_heading": "Good to know.",
-        "reveal": false
+        "reveal": false,
+        "show_videos": true,
+        "video_heading": "See it in action.",
+        "details_heading": "Good to know."
       }
     },
     "related": {
       "type": "product-rail",
       "settings": {
+        "eyebrow": "BEST SELLERS · COD AVAILABLE",
         "heading": "You might also like.",
         "description": "",
+        "products": [],
         "collection": "all",
         "limit": 4,
-        "anchor": "more-finds",
-        "link_label": "View all"
-      }
-    },
-    "lens": {
-      "type": "product-lens",
-      "settings": {
-        "enabled": true,
-        "eyebrow": "THE DETAILS",
-        "heading": "Look a little closer.",
-        "footer_text": "A closer view of the things worth noticing.",
-        "accent_color": "#1859d3",
-        "background_color": "#f4f8ff"
+        "link_label": "View all",
+        "anchor": "more-finds"
       }
     }
   },
