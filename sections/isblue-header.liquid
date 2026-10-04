@@ -3,7 +3,6 @@
     <div class="ib-wrap ib-topbar__inner">
       <p class="ib-topbar__message">{% render 'isblue-icon', icon: 'truck' %}<span>{{ section.settings.announcement | escape }}</span></p>
       <nav class="ib-topbar__links" aria-label="Utility navigation">
-        <a href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
         {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
         <span aria-label="Store country and currency">{{ localization.country.iso_code }} · {{ cart.currency.iso_code }}</span>
       </nav>
@@ -20,13 +19,15 @@
         <summary>{{ section.settings.products_label | escape }} <span aria-hidden="true">⌄</span></summary>
         <div class="ib-products-menu__panel">
           {% if section.settings.menu.links.size > 0 %}
-            {% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}
+            {% for link in section.settings.menu.links %}
+              {% assign link_title = link.title | downcase %}
+              {% unless link_title contains 'track order' or link.url contains '/pages/track-order' %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endunless %}
+            {% endfor %}
           {% else %}
             <a href="{{ routes.all_products_collection_url }}">{{ section.settings.shop_all_label | escape }}</a>
           {% endif %}
         </div>
       </details>
-      <a class="ib-primary-nav__link" href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
       {% if pages['about'] != blank %}<a class="ib-primary-nav__link" href="{{ pages['about'].url }}">About</a>{% endif %}
     </nav>
 
@@ -45,8 +46,12 @@
       <nav aria-label="Mobile navigation">
         <a href="{{ routes.root_url }}">Home</a>
         <a href="{{ routes.all_products_collection_url }}">Shop</a>
-        {% if section.settings.menu.links.size > 0 %}{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% endif %}
-        <a href="{{ pages['track-order'].url | default: '/pages/track-order' }}">Track Order</a>
+        {% if section.settings.menu.links.size > 0 %}
+          {% for link in section.settings.menu.links %}
+            {% assign link_title = link.title | downcase %}
+            {% unless link_title contains 'track order' or link.url contains '/pages/track-order' %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endunless %}
+          {% endfor %}
+        {% endif %}
         {% if pages['about'] != blank %}<a href="{{ pages['about'].url }}">About</a>{% endif %}
         {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
       </nav>

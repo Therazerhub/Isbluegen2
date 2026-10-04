@@ -218,13 +218,13 @@ body { background: #fff; color: var(--ibh-ink); }
 
 @media (max-width: 700px) {
   .ib-home-hero { width: 100%; }
-  .ib-home-hero__surface { min-height: 640px; }
-  .ib-home-hero-copy { width: 100%; min-height: 640px; padding: 46px 22px 38px; background: linear-gradient(90deg, rgb(249 251 253 / 98%) 0%, rgb(249 251 253 / 92%) 66%, rgb(249 251 253 / 48%) 100%); }
-  .ib-home-hero h1 { max-width: 540px; font-size: clamp(39px, 11.8vw, 54px); line-height: 1.02; }
+  .ib-home-hero__surface { display: flex; min-height: 0; flex-direction: column-reverse; background: #f7f9fb; }
+  .ib-home-hero-copy { width: 100%; min-height: 0; padding: 32px 22px 36px; background: #f7f9fb; }
+  .ib-home-hero h1 { max-width: 540px; font-size: clamp(34px, 10vw, 44px); line-height: 1.02; }
   .ib-home-hero__description { max-width: 36ch; font-size: 13px; }
-  .ib-home-hero__media { position: absolute; inset: 0; min-height: 0; }
-  .ib-home-hero-image { object-position: 62% center; }
-  .ib-home-hero__media::after { background: linear-gradient(90deg, rgb(249 251 253 / 52%) 0%, rgb(249 251 253 / 12%) 100%); }
+  .ib-home-hero__media { position: relative; inset: auto; width: 100%; min-height: 0; height: clamp(230px, 66vw, 300px); }
+  .ib-home-hero-image { display: block; object-position: 62% center; }
+  .ib-home-hero__media::after { background: linear-gradient(180deg, rgb(247 249 251 / 0%) 68%, #f7f9fb 100%); }
   .ib-home-hero__media-note { top: 24px; right: 22px; font-size: 15px; }
   .ib-home-section-heading { align-items: flex-start; }
   .ib-home-banner { min-height: 410px; }
@@ -241,7 +241,7 @@ body { background: #fff; color: var(--ibh-ink); }
   .ib-topbar__inner { min-height: 30px; }
   .ib-header .ib-header-row { width: calc(100% - 20px); }
   .ib-header .ib-header-actions { gap: 0; }
-  .ib-home-hero-copy { min-height: 620px; }
+  .ib-home-hero-copy { min-height: 0; padding-top: 28px; }
   .ib-home-hero__proof { align-items: flex-start; }
   .ib-home-trust__item { gap: 10px; padding: 20px 10px; }
   .ib-home-trust__icon { width: 29px; height: 29px; flex-basis: 29px; }

@@ -14,7 +14,7 @@
       {% if section.settings.image != blank %}
         {{ section.settings.image | image_url: width: 1800 | image_tag: class: 'ib-home-hero-image ib-hero-image', fetchpriority: 'high', widths: '640,960,1280,1800', sizes: '(max-width: 767px) 100vw, 58vw' }}
       {% else %}
-        <img class="ib-home-hero-image ib-hero-image" src="{{ 'isblue-ai-lifestyle-hero.webp' | asset_url }}" width="1672" height="941" alt="A bright modern living space with soft greenery and cobalt accents" fetchpriority="high">
+        <img class="ib-home-hero-image ib-hero-image" src="{{ 'isblue-modern-hero-v3.webp' | asset_url }}" width="1672" height="941" alt="A curated collection of useful everyday essentials in a bright ice-blue interior" fetchpriority="high">
       {% endif %}
       {% if section.settings.media_note != blank %}<p class="ib-home-hero__media-note">{{ section.settings.media_note | escape }}</p>{% endif %}
     </div>
