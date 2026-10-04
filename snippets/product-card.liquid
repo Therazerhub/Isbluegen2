@@ -1,25 +1,61 @@
-<article class="product-card">
-  <a class="product-image-link" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
-    {% if product.featured_image %}
-      {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '250,400,550,700,900', sizes: '(max-width: 767px) 75vw, 25vw', class: 'product-image', alt: product.title }}
-    {% else %}
-      {{ 'product-1' | placeholder_svg_tag: 'product-image placeholder' }}
-    {% endif %}
-    {% if product.compare_at_price > product.price %}
-      {% assign card_saving = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
-      <strong class="product-discount-badge">{{ card_saving }}% OFF</strong>
-    {% endif %}
-  </a>
-  <div class="product-card-meta"><span>{{ product.type | default: 'The everyday edit' | escape }}</span></div>
-  <span class="product-quality-label">IsBlue pick</span>
-  <h2 class="product-card-title"><a href="{{ product.url }}">{{ product.title | split: ' — ' | first | split: ' | ' | first | escape }}</a></h2>
-  <div class="product-card-bottom">
-    <p class="price">{{ product.price | money }}{% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}</p>
-    {% if product.available %}
-      <a class="quick-add quick-add--labelled" href="{{ product.url }}" aria-label="View details for {{ product.title | escape }}"><span>View details</span>{% render 'icon', name: 'arrow-right' %}</a>
-    {% else %}
-      <span class="sold-out">Sold out</span>
-    {% endif %}
-  </div>
-  <p class="product-card-cod">{% render 'icon', name: 'truck' %} Cash on Delivery available</p>
-</article>
+{% if context == 'shop' %}
+  <article class="shop-product-card">
+    <a class="shop-product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '240,360,480,700,900', sizes: '(max-width: 700px) 50vw, 25vw', class: 'shop-product-card__image', alt: product.title }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'shop-product-card__image placeholder' }}
+      {% endif %}
+      {% if product.compare_at_price > product.price %}
+        {% assign shop_saving = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
+        <strong class="shop-product-card__discount">{{ shop_saving }}% OFF</strong>
+      {% endif %}
+      <span class="shop-product-card__view" aria-hidden="true">{% render 'isblue-icon', icon: 'search' %}</span>
+    </a>
+    <div class="shop-product-card__body">
+      {% if product.metafields.reviews.rating.value != blank %}
+        <p class="shop-product-card__rating" aria-label="Rated {{ product.metafields.reviews.rating.value }} out of 5">★★★★★ <span>{{ product.metafields.reviews.rating.value }}</span></p>
+      {% endif %}
+      <h2><a href="{{ product.url }}">{{ product.title | split: ' — ' | first | split: ' | ' | first | escape }}</a></h2>
+      {% assign short_description = product.description | strip_html | strip %}
+      {% if short_description != blank %}<p class="shop-product-card__description">{{ short_description | truncate: 52 }}</p>{% endif %}
+      <div class="shop-product-card__price">
+        <strong>{{ product.price | money }}</strong>
+        {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s><span>Save {{ product.compare_at_price | minus: product.price | money }}</span>{% endif %}
+      </div>
+      {% if product.available %}
+        <button type="button" class="shop-product-card__add" data-hover-add data-variant-id="{{ product.selected_or_first_available_variant.id }}" aria-label="Add {{ product.title | escape }} to cart">
+          {% render 'isblue-icon', icon: 'cart' %}<span>Add to cart</span>
+        </button>
+      {% else %}
+        <a class="shop-product-card__add is-disabled" href="{{ product.url }}">Sold out</a>
+      {% endif %}
+    </div>
+  </article>
+{% else %}
+  <article class="product-card">
+    <a class="product-image-link" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '250,400,550,700,900', sizes: '(max-width: 767px) 75vw, 25vw', class: 'product-image', alt: product.title }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'product-image placeholder' }}
+      {% endif %}
+      {% if product.compare_at_price > product.price %}
+        {% assign card_saving = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
+        <strong class="product-discount-badge">{{ card_saving }}% OFF</strong>
+      {% endif %}
+    </a>
+    <div class="product-card-meta"><span>{{ product.type | default: 'The everyday edit' | escape }}</span></div>
+    <span class="product-quality-label">IsBlue pick</span>
+    <h2 class="product-card-title"><a href="{{ product.url }}">{{ product.title | split: ' — ' | first | split: ' | ' | first | escape }}</a></h2>
+    <div class="product-card-bottom">
+      <p class="price">{{ product.price | money }}{% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}</p>
+      {% if product.available %}
+        <a class="quick-add quick-add--labelled" href="{{ product.url }}" aria-label="View details for {{ product.title | escape }}"><span>View details</span>{% render 'icon', name: 'arrow-right' %}</a>
+      {% else %}
+        <span class="sold-out">Sold out</span>
+      {% endif %}
+    </div>
+    <p class="product-card-cod">{% render 'icon', name: 'truck' %} Cash on Delivery available</p>
+  </article>
+{% endif %}

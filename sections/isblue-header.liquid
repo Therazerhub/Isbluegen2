@@ -1,7 +1,11 @@
 <header class="ib ib-header{% if section.settings.sticky_header %} ib-header--sticky{% endif %}" data-section-id="{{ section.id }}">
   <div class="ib-topbar">
     <div class="ib-wrap ib-topbar__inner">
-      <p class="ib-topbar__message">{% render 'isblue-icon', icon: 'truck' %}<span>{{ section.settings.announcement | escape }}</span></p>
+      <div class="ib-topbar__benefits" aria-label="Store benefits">
+        <p>{% render 'isblue-icon', icon: 'truck' %}<span>{{ section.settings.announcement | escape }}</span></p>
+        <p>{% render 'isblue-icon', icon: 'return' %}<span>7 Day Easy Returns</span></p>
+        <p>{% render 'isblue-icon', icon: 'shield' %}<span>Fast &amp; Secure Shipping</span></p>
+      </div>
       <nav class="ib-topbar__links" aria-label="Utility navigation">
         {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
         <span aria-label="Store country and currency">{{ localization.country.iso_code }} · {{ cart.currency.iso_code }}</span>
@@ -13,26 +17,19 @@
     <a href="{{ routes.root_url }}" class="ib-brand" aria-label="{{ shop.name | escape }} home">{% render 'isblue-logo' %}</a>
 
     <nav class="ib-primary-nav" aria-label="Main navigation">
-      <a class="ib-primary-nav__link" href="{{ routes.root_url }}">Home</a>
-      <a class="ib-primary-nav__link" href="{{ routes.all_products_collection_url }}">Shop</a>
-      <details class="ib-products-menu">
-        <summary>{{ section.settings.products_label | escape }} <span aria-hidden="true">⌄</span></summary>
-        <div class="ib-products-menu__panel">
-          {% if section.settings.menu.links.size > 0 %}
-            {% for link in section.settings.menu.links %}
-              {% assign link_title = link.title | downcase %}
-              {% unless link_title contains 'track order' or link.url contains '/pages/track-order' %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endunless %}
-            {% endfor %}
-          {% else %}
-            <a href="{{ routes.all_products_collection_url }}">{{ section.settings.shop_all_label | escape }}</a>
-          {% endif %}
-        </div>
-      </details>
-      {% if pages['about'] != blank %}<a class="ib-primary-nav__link" href="{{ pages['about'].url }}">About</a>{% endif %}
+      <a class="ib-primary-nav__link{% if request.page_type == 'index' %} is-active{% endif %}" href="{{ routes.root_url }}">Home</a>
+      <a class="ib-primary-nav__link{% if request.page_type == 'collection' %} is-active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop</a>
     </nav>
 
+    <form class="ib-header-search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="visually-hidden" for="HeaderSearch-{{ section.id }}">{{ section.settings.search_label | escape }}</label>
+      <input id="HeaderSearch-{{ section.id }}" type="search" name="q" placeholder="Search for products..." autocomplete="off">
+      <input type="hidden" name="type" value="product">
+      <button type="submit" aria-label="Search">{% render 'isblue-icon', icon: 'search' %}</button>
+    </form>
+
     <div class="ib-header-actions">
-      <a class="ib-header-search" href="{{ routes.search_url }}" aria-label="{{ section.settings.search_label | escape }}">
+      <a class="ib-header-search ib-header-search--mobile" href="{{ routes.search_url }}" aria-label="{{ section.settings.search_label | escape }}">
         {% render 'isblue-icon', icon: 'search' %}<span class="visually-hidden">{{ section.settings.search_label | escape }}</span>
       </a>
       {% if shop.customer_accounts_enabled %}<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" aria-label="My account">{% render 'isblue-icon', icon: 'user' %}<span class="visually-hidden">{{ section.settings.account_label | escape }}</span></a>{% endif %}
@@ -46,14 +43,6 @@
       <nav aria-label="Mobile navigation">
         <a href="{{ routes.root_url }}">Home</a>
         <a href="{{ routes.all_products_collection_url }}">Shop</a>
-        {% if section.settings.menu.links.size > 0 %}
-          {% for link in section.settings.menu.links %}
-            {% assign link_title = link.title | downcase %}
-            {% unless link_title contains 'track order' or link.url contains '/pages/track-order' %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endunless %}
-          {% endfor %}
-        {% endif %}
-        {% if pages['about'] != blank %}<a href="{{ pages['about'].url }}">About</a>{% endif %}
-        {% if pages['contact'] != blank %}<a href="{{ pages['contact'].url }}">Contact Us</a>{% endif %}
       </nav>
     </details>
   </div>
@@ -64,9 +53,6 @@
 {
   "name": "IsBlue header",
   "settings": [
-    { "type": "link_list", "id": "menu", "label": "Products menu", "default": "main-menu" },
-    { "type": "text", "id": "products_label", "label": "Products menu label", "default": "Products" },
-    { "type": "text", "id": "shop_all_label", "label": "Fallback products link", "default": "Shop all products" },
     { "type": "text", "id": "search_label", "label": "Search label", "default": "Search" },
     { "type": "text", "id": "account_label", "label": "Account label", "default": "Account" },
     { "type": "text", "id": "announcement", "label": "Announcement", "default": "Cash on Delivery Available" },

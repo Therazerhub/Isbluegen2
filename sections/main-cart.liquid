@@ -1,2 +1,100 @@
-<section class="page-width section-space cart-page"><h1>Your good finds.</h1>{% if cart.item_count > 0 %}<form action="{{ routes.cart_url }}" method="post"><div class="cart-page-items">{% for item in cart.items %}<div class="cart-page-item">{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: item.title }}<div><h2><a href="{{ item.url }}">{{ item.product.title | escape }}</a></h2><p>{{ item.variant.title | escape }}</p><strong>{{ item.final_line_price | money }}</strong><a href="{{ item.url_to_remove }}">Remove</a></div><label>Quantity<input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity for {{ item.title | escape }}"></label></div>{% endfor %}</div><div class="cart-page-summary"><label for="CartNote">Order note</label><textarea name="note" id="CartNote">{{ cart.note | escape }}</textarea><p>Subtotal <strong>{{ cart.total_price | money }}</strong></p><p>Shipping, taxes, and discounts calculated at checkout.</p><div class="purchase-row"><button class="button" name="update">Update bag</button><button class="button button-primary" name="checkout">Continue to checkout</button></div></div></form>{% else %}<div class="empty-state"><h2>Room for something good.</h2><p>Your bag is empty. Let's find your next favourite.</p><a href="{{ routes.all_products_collection_url }}" class="button button-primary">Explore the edit</a></div>{% endif %}</section>
-{% schema %}{"name":"Shopping bag","settings":[]}{% endschema %}
+<section class="ib cart-page-modern" data-cart-page>
+  <div class="ib-wrap cart-page-modern__intro">
+    <h1>Your <span>Cart</span></h1>
+    <p>Almost there! Complete your order and get your products delivered soon.</p>
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <form class="ib-wrap cart-layout" action="{{ routes.cart_url }}" method="post" id="CartForm">
+      <div class="cart-panel">
+        <div class="cart-table-head" aria-hidden="true"><span>Product</span><span>Price</span><span>Quantity</span><span>Total</span></div>
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <article class="cart-line" data-cart-line="{{ forloop.index }}">
+              <a class="cart-line__image" href="{{ item.url }}">
+                {% if item.image %}{{ item.image | image_url: width: 320 | image_tag: loading: 'lazy', widths: '120,180,240,320', sizes: '120px', alt: item.title }}{% endif %}
+              </a>
+              <div class="cart-line__product">
+                <h2><a href="{{ item.url }}">{{ item.product.title | escape }}</a></h2>
+                {% unless item.variant.title == 'Default Title' %}<p>{{ item.variant.title | escape }}</p>{% endunless %}
+                <div class="cart-line__badges"><span class="is-stock">In Stock</span><span>{% render 'isblue-icon', icon: 'truck' %} Cash on Delivery</span></div>
+              </div>
+              <p class="cart-line__unit"><span>Price</span>{{ item.final_price | money }}</p>
+              <div class="cart-line__quantity">
+                <span class="visually-hidden">Quantity for {{ item.title | escape }}</span>
+                <button type="button" data-cart-quantity="decrease" data-line="{{ forloop.index }}" aria-label="Decrease quantity of {{ item.title | escape }}">−</button>
+                <input name="updates[]" value="{{ item.quantity }}" inputmode="numeric" readonly aria-label="Quantity for {{ item.title | escape }}">
+                <button type="button" data-cart-quantity="increase" data-line="{{ forloop.index }}" aria-label="Increase quantity of {{ item.title | escape }}">+</button>
+              </div>
+              <strong class="cart-line__total"><span>Total</span>{{ item.final_line_price | money }}</strong>
+              <a class="cart-line__remove" href="{{ item.url_to_remove }}" aria-label="Remove {{ item.title | escape }} from cart">{% render 'isblue-icon', icon: 'close' %}</a>
+            </article>
+          {% endfor %}
+        </div>
+
+        <div class="cart-note">
+          <label for="CartNote">{% render 'isblue-icon', icon: 'box' %}<strong>Add a note to your order</strong> <span>(Optional)</span></label>
+          <textarea name="note" id="CartNote" maxlength="200" placeholder="Special instructions, delivery notes, etc.">{{ cart.note | escape }}</textarea>
+          <output for="CartNote" data-note-count>{{ cart.note.size }}/200</output>
+        </div>
+      </div>
+
+      <aside class="cart-summary">
+        <h2>Order Summary</h2>
+        <dl>
+          <div><dt>Subtotal ({{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %})</dt><dd>{{ cart.total_price | money }}</dd></div>
+          {% if cart.total_discount > 0 %}<div class="cart-summary__saving"><dt>Discounts</dt><dd>-{{ cart.total_discount | money }}</dd></div>{% endif %}
+          <div><dt>Shipping <span title="Shipping is calculated at checkout">ⓘ</span></dt><dd>Calculated at checkout</dd></div>
+          <div><dt>Taxes <span title="Taxes are calculated at checkout">ⓘ</span></dt><dd>Calculated at checkout</dd></div>
+        </dl>
+        <div class="cart-summary__total"><span>Total</span><strong>{{ cart.total_price | money }}</strong></div>
+        <p class="cart-summary__tax">Including all applicable taxes</p>
+        <button class="cart-checkout" name="checkout" type="submit">Continue to Checkout {% render 'icon', name: 'arrow-right' %}</button>
+        <p class="cart-secure">{% render 'isblue-icon', icon: 'shield' %} Safe &amp; Secure Checkout</p>
+        <div class="cart-payment-icons" aria-label="Accepted payment methods">
+          {% if shop.enabled_payment_types.size > 0 %}
+            {% for type in shop.enabled_payment_types limit: 5 %}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{% endfor %}
+          {% else %}
+            {{ 'visa' | payment_type_svg_tag: class: 'payment-icon' }}
+            {{ 'master' | payment_type_svg_tag: class: 'payment-icon' }}
+            {{ 'rupay' | payment_type_svg_tag: class: 'payment-icon' }}
+          {% endif %}
+        </div>
+      </aside>
+    </form>
+
+    {% assign recommendation_collection = collections.all %}
+    <section class="ib-wrap cart-recommendations" aria-labelledby="CartRecommendations">
+      <div class="cart-recommendations__head"><h2 id="CartRecommendations">{% render 'isblue-icon', icon: 'cart' %} Frequently Bought Together</h2><a href="{{ routes.all_products_collection_url }}">Shop all {% render 'icon', name: 'arrow-right' %}</a></div>
+      <div class="cart-recommendations__grid">
+        {% assign recommendation_count = 0 %}
+        {% for product in recommendation_collection.products %}
+          {% if product.available and product.id != cart.items.first.product.id and recommendation_count < 3 %}
+            <article class="cart-recommendation">
+              <a href="{{ product.url }}" class="cart-recommendation__image">{% if product.featured_image %}{{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', widths: '120,200,300', sizes: '110px', alt: product.title }}{% endif %}</a>
+              <div><h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3><p><strong>{{ product.price | money }}</strong>{% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}</p></div>
+              <button type="button" data-hover-add data-variant-id="{{ product.selected_or_first_available_variant.id }}" aria-label="Add {{ product.title | escape }} to cart">+ Add</button>
+            </article>
+            {% assign recommendation_count = recommendation_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% else %}
+    <div class="ib-wrap cart-empty-modern">
+      <span>{% render 'isblue-icon', icon: 'cart' %}</span>
+      <h2>Your cart is ready for something good.</h2>
+      <p>Explore useful everyday upgrades picked for smarter living.</p>
+      <a href="{{ routes.all_products_collection_url }}">Start Shopping</a>
+    </div>
+  {% endif %}
+
+  <div class="ib-wrap cart-trust" aria-label="Shopping benefits">
+    <div>{% render 'isblue-icon', icon: 'truck' %}<p><strong>Cash on Delivery</strong><span>Pay when you receive</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'shield' %}<p><strong>7 Days Easy Returns</strong><span>Shop with confidence</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'box' %}<p><strong>Free &amp; Fast Shipping</strong><span>On eligible orders</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'headphones' %}<p><strong>24/7 Support</strong><span>We're here to help</span></p></div>
+  </div>
+</section>
+
+{% schema %}{"name":"Modern cart page","settings":[]}{% endschema %}

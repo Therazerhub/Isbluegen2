@@ -14,9 +14,6 @@
     "header": {
       "type": "isblue-header",
       "settings": {
-        "menu": "main-menu",
-        "products_label": "Products",
-        "shop_all_label": "Shop all products",
         "search_label": "Search",
         "account_label": "Account",
         "announcement": "Cash on Delivery Available",

@@ -1,46 +1,87 @@
-<section class="page-width section-space collection-page">
-  <div class="collection-heading">
-    <p class="eyebrow">Find your next favourite</p>
-    <h1>{{ collection.title | escape }}</h1>
-    {% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}
+{% liquid
+  assign page_heading = collection.title
+  if collection.handle == 'all'
+    assign page_heading = section.settings.heading
+  endif
+%}
+<section class="ib shop-page" data-shop-page>
+  <div class="shop-hero">
+    <div class="ib-wrap shop-hero__inner">
+      <div class="shop-hero__copy">
+        <nav class="shop-breadcrumb" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a><span aria-hidden="true">›</span><span>{{ page_heading | escape }}</span></nav>
+        <p class="shop-trending">{% render 'isblue-icon', icon: 'spark' %} Trending products</p>
+        <h1>{{ page_heading | escape }}</h1>
+        <p class="shop-hero__lead">{{ section.settings.description | escape }}</p>
+      </div>
+      <div class="shop-hero__stage" aria-label="Featured products">
+        {% for product in collection.products limit: 4 %}
+          <a class="shop-hero-product shop-hero-product--{{ forloop.index }}" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'eager', widths: '220,360,520,720', sizes: '(max-width: 767px) 38vw, 18vw', alt: product.title }}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'shop-hero-placeholder' }}
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
-  <form method="get" class="collection-tools">
-    <span>{{ collection.products_count }} discoveries</span>
-    <div>
-      <label for="SortBy">Sort by</label>
-      <select name="sort_by" id="SortBy" data-auto-submit>
-        {% for option in collection.sort_options %}<option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}
-      </select>
-      <noscript><button type="submit">Sort</button></noscript>
+  <div class="shop-hero-benefits">
+    <div class="ib-wrap shop-hero-benefits__grid">
+      <div>{% render 'isblue-icon', icon: 'truck' %}<p><strong>Cash on Delivery</strong><span>Available</span></p></div>
+      <div>{% render 'isblue-icon', icon: 'return' %}<p><strong>7 Day Easy Returns</strong><span>Simple returns</span></p></div>
+      <div>{% render 'isblue-icon', icon: 'shield' %}<p><strong>Secure Payments</strong><span>Protected checkout</span></p></div>
+      <div>{% render 'isblue-icon', icon: 'box' %}<p><strong>Fast Shipping</strong><span>Across India</span></p></div>
     </div>
-    {% for filter in collection.filters %}
-      <details class="filter">
-        <summary><span>{{ filter.label | escape }}</span>{% render 'icon', name: 'caret-down' %}</summary>
-        <div>
-          {% case filter.type %}
-            {% when 'list' %}
-              {% for value in filter.values %}<label><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}>{{ value.label | escape }} ({{ value.count }})</label>{% endfor %}
-            {% when 'price_range' %}
-              <label>Minimum price<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | divided_by: 100.0 }}" min="0"></label>
-              <label>Maximum price<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | divided_by: 100.0 }}" min="0"></label>
-          {% endcase %}
-          <button type="submit" class="button">Apply</button>
-        </div>
-      </details>
-    {% endfor %}
-    <a href="{{ collection.url }}">Clear filters</a>
-  </form>
+  </div>
 
-  {% paginate collection.products by 24 %}
-    <div class="product-grid">
-      {% for product in collection.products %}
-        {% render 'product-card', product: product %}
-      {% else %}
-        <div class="empty-state"><h2>No finds here yet.</h2><p>Try clearing your filters.</p><a href="{{ routes.all_products_collection_url }}" class="button button-primary">See all products</a></div>
-      {% endfor %}
+  <div class="ib-wrap shop-catalogue">
+    <div class="shop-toolbar">
+      <p class="shop-count">{{ collection.products_count }} products</p>
+      <nav class="shop-price-pills" aria-label="Price filters">
+        <a href="{{ collection.url }}"{% unless request.query_string contains 'filter.v.price' %} class="is-active" aria-current="page"{% endunless %}>All</a>
+        <a href="{{ collection.url }}?filter.v.price.lte=500">Under ₹500</a>
+        <a href="{{ collection.url }}?filter.v.price.gte=500&amp;filter.v.price.lte=1000">₹500 - ₹1,000</a>
+        <a href="{{ collection.url }}?filter.v.price.gte=1000">Above ₹1,000</a>
+      </nav>
+      <form method="get" class="shop-sort">
+        <label for="SortBy">Sort by</label>
+        <select name="sort_by" id="SortBy" data-auto-submit>
+          {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+          {% for option in collection.sort_options %}<option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}
+        </select>
+        <noscript><button type="submit">Apply</button></noscript>
+      </form>
     </div>
-    {% if paginate.pages > 1 %}<nav class="pagination" aria-label="Pagination">{{ paginate | default_pagination }}</nav>{% endif %}
-  {% endpaginate %}
+
+    {% paginate collection.products by section.settings.products_per_page %}
+      <div class="shop-product-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product, context: 'shop' %}
+        {% else %}
+          <div class="shop-empty"><h2>No products found</h2><p>Try a different price range or clear the current filters.</p><a href="{{ collection.url }}">View all products</a></div>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}<nav class="shop-pagination" aria-label="Pagination">{{ paginate | default_pagination }}</nav>{% endif %}
+    {% endpaginate %}
+  </div>
+
+  <div class="ib-wrap shop-service-strip" aria-label="Shopping benefits">
+    <div>{% render 'isblue-icon', icon: 'truck' %}<p><strong>Cash on Delivery</strong><span>Pay when you receive</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'shield' %}<p><strong>7 Day Easy Returns</strong><span>Hassle-free returns</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'cash' %}<p><strong>Secure Payments</strong><span>100% safe &amp; secure</span></p></div>
+    <div>{% render 'isblue-icon', icon: 'headphones' %}<p><strong>24/7 Support</strong><span>We're here to help</span></p></div>
+  </div>
 </section>
-{% schema %}{"name":"Collection","settings":[]}{% endschema %}
+
+{% schema %}
+{
+  "name": "Shop page",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Products" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Discover useful, innovative and high-quality products curated for a better lifestyle." },
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 32, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}
