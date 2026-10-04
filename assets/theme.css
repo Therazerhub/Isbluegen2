@@ -212,3 +212,45 @@ body:has([data-design="minimal"]) #more-finds{padding-block:56px}
 }
 @media(max-width:480px){.product-lens-visuals{min-height:390px}.product-lens-photo figcaption{font-size:9px}.product-lens-photo-secondary{border-width:5px}[data-design="minimal"] .product-gallery-index{right:18px;bottom:18px}}
 @media(prefers-reduced-motion:reduce){[data-design="minimal"] .purchase-row .button,[data-design="minimal"] .shopify-payment-button__button--unbranded{transition:none!important;transform:none!important}}
+
+/* Collection usability audit: one compact type, color and radius system. */
+.collection-page{--collection-text:var(--ink);--collection-muted:var(--muted);--collection-accent:var(--accent);--collection-radius:16px;--collection-control-radius:10px;color:var(--collection-text)}
+.collection-page .collection-heading .eyebrow{color:var(--collection-accent);font-size:12px;line-height:1.5;letter-spacing:.04em;text-transform:none}
+.collection-page .collection-heading h1{font-size:48px}
+.collection-page .collection-heading .rte{color:var(--collection-muted);font-size:16px}
+.collection-page .collection-tools{color:var(--collection-muted);font-size:13px}
+.collection-page .collection-tools label,.collection-page .collection-tools summary,.collection-page .collection-tools a{color:var(--collection-text)}
+.collection-page .collection-tools select,.collection-page .filter input{border:1px solid var(--line);border-radius:var(--collection-control-radius);background:var(--surface);color:var(--collection-text)}
+.collection-page .filter>summary{display:inline-flex;min-height:44px;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--collection-control-radius);cursor:pointer;list-style:none}
+.collection-page .filter>summary::-webkit-details-marker{display:none}
+.collection-page .filter>summary::marker{content:""}
+.collection-page .filter>summary .icon{width:16px;height:16px;transition:transform .2s var(--ease)}
+.collection-page .filter[open]>summary .icon{transform:rotate(180deg)}
+.collection-page .filter>div{border:1px solid var(--line);border-radius:var(--collection-radius);color:var(--collection-text)}
+.collection-page .product-image-link{border-radius:var(--collection-radius)}
+.collection-page .product-discount-badge{border-radius:999px;font-size:12px}
+.collection-page .product-card-meta{justify-content:flex-start;margin-top:16px;color:var(--collection-muted);font-size:12px}
+.collection-page .product-quality-label{display:block;width:fit-content;margin-top:6px;color:var(--collection-accent)!important;font-size:12px;font-weight:750!important;letter-spacing:.04em;text-align:left;text-transform:none}
+.collection-page .product-card-title{min-height:48px;margin-top:6px;color:var(--collection-text);font-size:16px;line-height:1.5;letter-spacing:-.02em}
+.collection-page .product-card-bottom{gap:12px;margin-top:12px}
+.collection-page .price{color:var(--collection-text);font-size:16px}
+.collection-page .price s{margin-left:5px;color:var(--collection-muted);font-size:13px}
+.collection-page .quick-add--labelled{display:inline-flex!important;width:auto!important;min-width:44px!important;min-height:44px;height:44px!important;align-items:center;justify-content:center;padding:0 14px!important;border-radius:var(--collection-control-radius)!important;background:var(--collection-accent);color:#fff;white-space:nowrap}
+.collection-page .quick-add--labelled span{font-size:13px;font-weight:700}
+.collection-page .quick-add--labelled .icon{width:16px;height:16px}
+.collection-page .quick-add--labelled:hover{background:#1037bd;color:#fff}
+.collection-page .product-card-cod{margin-top:12px;color:var(--collection-muted);font-size:12px}
+.collection-page .product-card-cod .icon{width:16px;height:16px;color:var(--collection-accent)}
+.collection-page .sold-out{color:var(--collection-muted);font-size:12px}
+@media(max-width:767px){
+ .collection-page .collection-heading h1{font-size:40px}
+ .collection-page .product-grid .product-card-meta,.collection-page .product-grid .product-quality-label,.collection-page .product-grid .product-card-cod{font-size:12px}
+ .collection-page .product-grid .product-card-title{font-size:16px}
+ .collection-page .product-grid .price{font-size:16px}
+ .collection-page .product-grid .price s{display:inline;font-size:13px}
+ .collection-page .product-grid .quick-add--labelled{min-width:44px!important;height:44px!important}
+}
+@media(max-width:540px){
+ .collection-page .product-card-bottom{flex-direction:column;align-items:stretch}
+ .collection-page .product-grid .quick-add--labelled{width:100%!important;min-width:44px!important;height:44px!important}
+}

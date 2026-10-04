@@ -1,2 +1,46 @@
-<section class="page-width section-space"><div class="collection-heading"><p class="eyebrow">FIND YOUR NEXT FAVOURITE</p><h1>{{ collection.title | escape }}</h1>{% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}</div><form method="get" class="collection-tools"><span>{{ collection.products_count }} discoveries</span><div><label for="SortBy">Sort by</label><select name="sort_by" id="SortBy" data-auto-submit>{% for option in collection.sort_options %}<option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}</select><noscript><button type="submit">Sort</button></noscript></div>{% for filter in collection.filters %}<details class="filter"><summary>{{ filter.label | escape }}</summary><div>{% case filter.type %}{% when 'list' %}{% for value in filter.values %}<label><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}>{{ value.label | escape }} ({{ value.count }})</label>{% endfor %}{% when 'price_range' %}<label>Minimum price<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | divided_by: 100.0 }}" min="0"></label><label>Maximum price<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | divided_by: 100.0 }}" min="0"></label>{% endcase %}<button type="submit" class="button">Apply</button></div></details>{% endfor %}<a href="{{ collection.url }}">Clear filters</a></form>{% paginate collection.products by 24 %}<div class="product-grid">{% for product in collection.products %}{% render 'product-card', product: product %}{% else %}<div class="empty-state"><h2>No finds here yet.</h2><p>Try clearing your filters.</p><a href="{{ routes.all_products_collection_url }}" class="button button-primary">See all products</a></div>{% endfor %}</div>{% if paginate.pages > 1 %}<nav class="pagination">{{ paginate | default_pagination }}</nav>{% endif %}{% endpaginate %}</section>
+<section class="page-width section-space collection-page">
+  <div class="collection-heading">
+    <p class="eyebrow">Find your next favourite</p>
+    <h1>{{ collection.title | escape }}</h1>
+    {% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}
+  </div>
+
+  <form method="get" class="collection-tools">
+    <span>{{ collection.products_count }} discoveries</span>
+    <div>
+      <label for="SortBy">Sort by</label>
+      <select name="sort_by" id="SortBy" data-auto-submit>
+        {% for option in collection.sort_options %}<option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}
+      </select>
+      <noscript><button type="submit">Sort</button></noscript>
+    </div>
+    {% for filter in collection.filters %}
+      <details class="filter">
+        <summary><span>{{ filter.label | escape }}</span>{% render 'icon', name: 'caret-down' %}</summary>
+        <div>
+          {% case filter.type %}
+            {% when 'list' %}
+              {% for value in filter.values %}<label><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}>{{ value.label | escape }} ({{ value.count }})</label>{% endfor %}
+            {% when 'price_range' %}
+              <label>Minimum price<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | divided_by: 100.0 }}" min="0"></label>
+              <label>Maximum price<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | divided_by: 100.0 }}" min="0"></label>
+          {% endcase %}
+          <button type="submit" class="button">Apply</button>
+        </div>
+      </details>
+    {% endfor %}
+    <a href="{{ collection.url }}">Clear filters</a>
+  </form>
+
+  {% paginate collection.products by 24 %}
+    <div class="product-grid">
+      {% for product in collection.products %}
+        {% render 'product-card', product: product %}
+      {% else %}
+        <div class="empty-state"><h2>No finds here yet.</h2><p>Try clearing your filters.</p><a href="{{ routes.all_products_collection_url }}" class="button button-primary">See all products</a></div>
+      {% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}<nav class="pagination" aria-label="Pagination">{{ paginate | default_pagination }}</nav>{% endif %}
+  {% endpaginate %}
+</section>
 {% schema %}{"name":"Collection","settings":[]}{% endschema %}
