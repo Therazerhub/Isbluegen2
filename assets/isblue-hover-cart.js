@@ -30,6 +30,15 @@
       .catch(() => {});
   }
 
+  function showCartError(message) {
+    const toast = document.querySelector('[data-toast]');
+    if (!toast) return;
+    toast.textContent = message || 'Could not add this item. Please try again.';
+    toast.hidden = false;
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => { toast.hidden = true; }, 4500);
+  }
+
   async function addToCart(variantId, redirect) {
     const headerSectionId = document.querySelector('.ib-header[data-section-id]')?.dataset.sectionId;
     const payload = { items: [{ id: Number(variantId), quantity: 1 }] };
@@ -41,13 +50,19 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.description || data.message || 'Could not add to cart');
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error('The cart returned an invalid response. Please try again.');
+      }
+      if (!res.ok) throw new Error(data?.description || data?.message || 'Could not add to cart');
       if (!renderCartCountFromSections(data.sections, headerSectionId)) updateCartCount();
       if (redirect) window.location.assign(`${root()}checkout`);
       return true;
     } catch (err) {
       console.error('[isblue-hover-cart]', err.message);
+      showCartError(err.message);
       return false;
     }
   }
