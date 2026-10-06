@@ -129,6 +129,24 @@
         "loox_reviews_loox_dynamic_section_fV9Pqx"
       ],
       "settings": {}
+    },
+    "17912768115a8a8936": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_hRVExn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_hRVExn"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -137,6 +155,7 @@
     "lens",
     "details",
     "related",
-    "1791136954371c6612"
+    "1791136954371c6612",
+    "17912768115a8a8936"
   ]
 }
