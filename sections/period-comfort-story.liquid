@@ -32,7 +32,7 @@
     <div class="pc-story__feature">
       {% if detail_image != blank %}
         <div class="pc-story__media">
-          {{ detail_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: 'Digital display and controls for the period comfort massager' }}
+          {{ detail_image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: 'Digital display and controls for the period comfort massager' }}
         </div>
       {% endif %}
       <div class="pc-story__feature-copy">
@@ -57,7 +57,7 @@
       </div>
       {% if included_image != blank %}
         <div class="pc-story__media">
-          {{ included_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 46vw, 100vw', alt: 'Period comfort massager with adjustable belt and USB charging cable' }}
+          {{ included_image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 46vw, 100vw', alt: 'Period comfort massager with adjustable belt and USB charging cable' }}
         </div>
       {% endif %}
     </div>
