@@ -96,6 +96,177 @@
         "details_heading": ""
       }
     },
+    "product_testimonials": {
+      "type": "product-testimonials",
+      "blocks": {
+        "testimonial_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>Real stories. <strong>Real comfort.</strong></h2>",
+            "heading_custom": false,
+            "heading_font": "josefin_sans_n4",
+            "heading_accent_font": "playfair_n4",
+            "heading_size": 48,
+            "heading_size_mobile": 34,
+            "heading_advanced": false,
+            "heading_height": 130,
+            "heading_mt": 16,
+            "heading_mt_mobile": 16,
+            "heading_color": "#080b11",
+            "heading_accent_color": "#0b3dff"
+          }
+        },
+        "testimonial_intro": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Add verified customer experiences here.</p>",
+            "text_custom": false,
+            "text_font": "josefin_sans_n4",
+            "text_size": 16,
+            "text_size_mobile": 15,
+            "text_advanced": false,
+            "text_height": 150,
+            "text_max_width": 100,
+            "text_max_width_mobile": 100,
+            "text_mt": 16,
+            "text_mt_mobile": 16,
+            "text_color": "#53647a"
+          }
+        },
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_heading",
+        "testimonial_intro",
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_align": "center",
+        "content_align_mobile": "center",
+        "scrolling_velocity": 40,
+        "scrolling_velocity_mobile": 40,
+        "reverse_direction": false,
+        "pause_hover": true,
+        "slider_advanced": false,
+        "scrolling_gap": 16,
+        "scrolling_gap_mobile": 16,
+        "cards_mt": 32,
+        "cards_mt_mobile": 16,
+        "card_padding_advanced": false,
+        "card_width": 290,
+        "card_width_mobile": 290,
+        "card_padding_horizontal": 16,
+        "card_padding_horizontal_mobile": 16,
+        "card_padding_vertical": 16,
+        "card_padding_vertical_mobile": 16,
+        "card_radius": 20,
+        "card_border_thickness": 1,
+        "card_shadow": true,
+        "card_shadow_color": "#959da5",
+        "card_content_align": "left",
+        "card_content_align_mobile": "left",
+        "author_image_size": 42,
+        "author_image_size_mobile": 42,
+        "author_image_radius": 40,
+        "author_image_border_thickness": 0,
+        "author_custom": false,
+        "author_font": "josefin_sans_n4",
+        "author_size": 14,
+        "author_size_mobile": 14,
+        "author_height": 130,
+        "subcopy_author_custom": false,
+        "subcopy_author_font": "josefin_sans_n4",
+        "subcopy_author_size": 12,
+        "subcopy_author_size_mobile": 12,
+        "subcopy_advanced": false,
+        "subcopy_author_height": 130,
+        "subcopy_author_mt": 4,
+        "subcopy_author_mt_mobile": 4,
+        "subcopy_text_length": 24,
+        "slide_stars_size": 18,
+        "slide_stars_size_mobile": 18,
+        "slide_stars_advanced": false,
+        "slide_stars_gap": 2,
+        "slide_stars_mt": 10,
+        "slide_stars_mt_mobile": 10,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 14,
+        "text_advanced": false,
+        "text_height": 150,
+        "text_mt": 12,
+        "text_mt_mobile": 12,
+        "text_color": "#080b11",
+        "text_bg_color": "#121212",
+        "author_color": "#080b11",
+        "subcopy_author_color": "#53647a",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#dbe7f5",
+        "slide_stars_color": "#ffffff",
+        "slide_stars_bg_color": "#0b3dff",
+        "slide_stars_bg_half_color": "#dddddd",
+        "author_image_color": "#ffffff",
+        "author_image_bg_color": "#121212",
+        "author_image_border_color": "#121212",
+        "background_style": "solid",
+        "background_color": "#f4f8ff",
+        "background_gradient": "linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)",
+        "border_color": "#dbe7f5",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "width": "page",
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    },
     "video_carousel_CkGjQ6": {
       "type": "video-carousel",
       "blocks": {
@@ -145,22 +316,231 @@
         "section_padding_bottom": 60
       }
     },
-    "179127830895a6d0e6": {
-      "type": "apps",
-      "settings": {}
-    },
-    "related": {
-      "type": "product-rail",
-      "disabled": true,
+    "product_testimonials_wRCtG7": {
+      "type": "product-testimonials",
+      "blocks": {
+        "sub_heading_wjpYrE": {
+          "type": "sub_heading",
+          "settings": {
+            "sub_heading": "<p>HALF OF THE STOCK IS ALREADY SOLD!</p>",
+            "sub_heading_custom": false,
+            "sub_heading_font": "josefin_sans_n4",
+            "sub_heading_size": 12,
+            "sub_heading_size_mobile": 12,
+            "sub_heading_advanced": false,
+            "sub_heading_height": 130,
+            "sub_heading_mt": 0,
+            "sub_heading_mt_mobile": 0,
+            "background": true,
+            "sub_heading_radius": 100,
+            "sub_heading_border_thickness": 0,
+            "sub_heading_padding_horizontal": 16,
+            "sub_heading_padding_horizontal_mobile": 12,
+            "sub_heading_padding_vertical": 8,
+            "sub_heading_padding_vertical_mobile": 6,
+            "sub_heading_color": "#121212",
+            "sub_heading_bg_color": "#F7F7F7",
+            "sub_heading_border_color": "#121212"
+          }
+        },
+        "heading_4z6axy": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>Testimonials <strong>#48</strong></h2>",
+            "heading_custom": false,
+            "heading_font": "josefin_sans_n4",
+            "heading_accent_font": "playfair_n4",
+            "heading_size": 56,
+            "heading_size_mobile": 40,
+            "heading_advanced": false,
+            "heading_height": 130,
+            "heading_mt": 16,
+            "heading_mt_mobile": 16,
+            "heading_color": "#121212",
+            "heading_accent_color": "#AFAFAF"
+          }
+        },
+        "text_6ftVXm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tell your story</p>",
+            "text_custom": false,
+            "text_font": "josefin_sans_n4",
+            "text_size": 24,
+            "text_size_mobile": 18,
+            "text_advanced": false,
+            "text_height": 150,
+            "text_max_width": 100,
+            "text_max_width_mobile": 100,
+            "text_mt": 16,
+            "text_mt_mobile": 16,
+            "text_color": "#121212"
+          }
+        },
+        "button_Cjfbj7": {
+          "type": "button",
+          "settings": {
+            "button": "View All Reviews",
+            "url": "",
+            "open_in_new_tab": false,
+            "button_style": "outline",
+            "button_custom": false,
+            "button_font": "josefin_sans_n4",
+            "button_size": 14,
+            "button_size_mobile": 14,
+            "button_advanced": false,
+            "button_height": 100,
+            "button_padding_horizontal": 32,
+            "button_padding_horizontal_mobile": 32,
+            "button_padding_vertical": 16,
+            "button_padding_vertical_mobile": 16,
+            "button_radius": 100,
+            "button_border_thickness": 1,
+            "button_mt": 24,
+            "button_mt_mobile": 16,
+            "use_shadow": false,
+            "button_color": "#121212",
+            "button_hover_color": "#FFFFFF",
+            "button_bg_color": "#FFFFFF",
+            "button_bg_hover_color": "#121212",
+            "button_border_color": "#121212",
+            "button_border_hover_color": "#121212"
+          }
+        },
+        "testimonial_VeGe4k": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 5,
+            "text": "<p>“I love that I can just wrap it around my waist and continue doing things. No need to keep holding a heating pad in place.”</p>",
+            "author": "Priya S.",
+            "subcopy_author": "Verified Customer • Mumbai"
+          }
+        },
+        "testimonial_fEqwpR": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 5,
+            "text": "<p>“Honestly, this made my period days so much easier. The warmth and gentle massage are really comforting, especially when my lower stomach starts hurting.”</p>",
+            "author": "Ananya M.",
+            "subcopy_author": "Verified Customer • Pune"
+          }
+        },
+        "testimonial_eWdBYq": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 5,
+            "text": "<p>“The heat levels are great because I can start low and increase it when I need more warmth. It’s also surprisingly comfortable around my lower back.”</p>",
+            "author": "Riya K.",
+            "subcopy_author": "Verified Customer • Bengaluru"
+          }
+        },
+        "testimonial_CkF8fc": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 5,
+            "text": "<p>“I bought this mainly for period cramps, but I ended up using it for my lower back too. The cordless design makes it really convenient.”</p>",
+            "author": "Neha P.",
+            "subcopy_author": "Verified Customer • Delhi"
+          }
+        }
+      },
+      "block_order": [
+        "sub_heading_wjpYrE",
+        "heading_4z6axy",
+        "text_6ftVXm",
+        "button_Cjfbj7",
+        "testimonial_VeGe4k",
+        "testimonial_fEqwpR",
+        "testimonial_eWdBYq",
+        "testimonial_CkF8fc"
+      ],
+      "name": "Testimonials",
       "settings": {
-        "eyebrow": "BEST SELLERS · COD AVAILABLE",
-        "heading": "You might also like.",
-        "description": "",
-        "products": [],
-        "collection": "all",
-        "limit": 4,
-        "link_label": "View all",
-        "anchor": "more-finds"
+        "content_align": "center",
+        "content_align_mobile": "center",
+        "scrolling_velocity": 40,
+        "scrolling_velocity_mobile": 40,
+        "reverse_direction": false,
+        "pause_hover": true,
+        "slider_advanced": false,
+        "scrolling_gap": 16,
+        "scrolling_gap_mobile": 16,
+        "cards_mt": 32,
+        "cards_mt_mobile": 16,
+        "card_padding_advanced": false,
+        "card_width": 290,
+        "card_width_mobile": 290,
+        "card_padding_horizontal": 16,
+        "card_padding_horizontal_mobile": 16,
+        "card_padding_vertical": 16,
+        "card_padding_vertical_mobile": 16,
+        "card_radius": 16,
+        "card_border_thickness": 0,
+        "card_shadow": true,
+        "card_shadow_color": "#959DA5",
+        "card_content_align": "left",
+        "card_content_align_mobile": "left",
+        "author_image_size": 42,
+        "author_image_size_mobile": 42,
+        "author_image_radius": 40,
+        "author_image_border_thickness": 0,
+        "author_custom": false,
+        "author_font": "josefin_sans_n4",
+        "author_size": 14,
+        "author_size_mobile": 14,
+        "author_height": 130,
+        "subcopy_author_custom": false,
+        "subcopy_author_font": "josefin_sans_n4",
+        "subcopy_author_size": 12,
+        "subcopy_author_size_mobile": 12,
+        "subcopy_advanced": false,
+        "subcopy_author_height": 130,
+        "subcopy_author_mt": 4,
+        "subcopy_author_mt_mobile": 4,
+        "subcopy_text_length": 24,
+        "slide_stars_size": 18,
+        "slide_stars_size_mobile": 18,
+        "slide_stars_advanced": false,
+        "slide_stars_gap": 2,
+        "slide_stars_mt": 10,
+        "slide_stars_mt_mobile": 10,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 14,
+        "text_advanced": false,
+        "text_height": 150,
+        "text_mt": 12,
+        "text_mt_mobile": 12,
+        "text_color": "#121212",
+        "text_bg_color": "#121212",
+        "author_color": "#121212",
+        "subcopy_author_color": "#AFAFAF",
+        "card_bg_color": "#FFFFFF",
+        "card_border_color": "#121212",
+        "slide_stars_color": "#FFFFFF",
+        "slide_stars_bg_color": "#00B67A",
+        "slide_stars_bg_half_color": "#DDDDDD",
+        "author_image_color": "#FFFFFF",
+        "author_image_bg_color": "#121212",
+        "author_image_border_color": "#121212",
+        "background_style": "solid",
+        "background_color": "#FFFFFF",
+        "background_gradient": "linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "width": "page",
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
       }
     },
     "17912768115a8a8936": {
@@ -180,95 +560,6 @@
         "judge_me_reviews_review_widget_hRVExn"
       ],
       "settings": {}
-    },
-    "product_testimonials": {
-      "type": "product-testimonials",
-      "disabled": true,
-      "blocks": {
-        "testimonial_heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "<h2>Real stories. <strong>Real comfort.</strong></h2>",
-            "heading_size": 48,
-            "heading_size_mobile": 34,
-            "heading_color": "#080b11",
-            "heading_accent_color": "#0b3dff"
-          }
-        },
-        "testimonial_intro": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Add verified customer experiences here.</p>",
-            "text_size": 16,
-            "text_size_mobile": 15,
-            "text_color": "#53647a"
-          }
-        },
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {
-            "stars_count": 0,
-            "text": "",
-            "author": "",
-            "subcopy_author": ""
-          }
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {
-            "stars_count": 0,
-            "text": "",
-            "author": "",
-            "subcopy_author": ""
-          }
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {
-            "stars_count": 0,
-            "text": "",
-            "author": "",
-            "subcopy_author": ""
-          }
-        },
-        "testimonial_4": {
-          "type": "testimonial",
-          "settings": {
-            "stars_count": 0,
-            "text": "",
-            "author": "",
-            "subcopy_author": ""
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_heading",
-        "testimonial_intro",
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3",
-        "testimonial_4"
-      ],
-      "settings": {
-        "background_style": "solid",
-        "background_color": "#f4f8ff",
-        "card_bg_color": "#ffffff",
-        "card_border_color": "#dbe7f5",
-        "border_color": "#dbe7f5",
-        "text_color": "#080b11",
-        "author_color": "#080b11",
-        "subcopy_author_color": "#53647a",
-        "slide_stars_bg_color": "#0b3dff",
-        "slide_stars_color": "#ffffff",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "padding_horizontal": 5,
-        "padding_horizontal_mobile": 1.5,
-        "card_radius": 20,
-        "card_border_thickness": 1,
-        "pause_hover": true,
-        "lazy": true
-      }
     }
   },
   "order": [
@@ -278,8 +569,7 @@
     "details",
     "product_testimonials",
     "video_carousel_CkGjQ6",
-    "179127830895a6d0e6",
-    "related",
+    "product_testimonials_wRCtG7",
     "17912768115a8a8936"
   ]
 }
