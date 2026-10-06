@@ -1,0 +1,285 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "secure": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "shield-check",
+            "heading": "Secure checkout",
+            "caption": "Protected payment",
+            "link": ""
+          }
+        },
+        "help": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "chat-circle-text",
+            "heading": "Need a hand?",
+            "caption": "Get in touch",
+            "link": "/pages/contact"
+          }
+        },
+        "shipping": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "handbag",
+            "heading": "Delivery details",
+            "caption": "See shipping policy",
+            "link": "/policies/shipping-policy"
+          }
+        }
+      },
+      "block_order": [
+        "secure",
+        "help",
+        "shipping"
+      ],
+      "settings": {
+        "design": "minimal",
+        "zoom": true,
+        "reveal": true,
+        "dynamic_checkout": true,
+        "sticky_info": true,
+        "show_promotion_timer": true,
+        "promotion_label": "Offer ends in",
+        "promotion_ends_at": ""
+      }
+    },
+    "chapters": {
+      "type": "product-chapters",
+      "disabled": true,
+      "settings": {
+        "source": "product",
+        "eyebrow": "A closer look",
+        "heading": "Small details. Everyday difference.",
+        "layout": "editorial",
+        "motion": true,
+        "image_fit": "contain",
+        "background": "#ffffff",
+        "text_color": "#171717",
+        "accent": "#626262",
+        "spacing": 40,
+        "radius": 8
+      }
+    },
+    "lens": {
+      "type": "product-lens",
+      "disabled": true,
+      "settings": {
+        "enabled": true,
+        "eyebrow": "THE DETAILS",
+        "heading": "Look a little closer.",
+        "caption": "",
+        "footer_text": "A closer view of the things worth noticing.",
+        "image_fit": "contain",
+        "accent_color": "#1859d3",
+        "background_color": "#f4f8ff"
+      }
+    },
+    "details": {
+      "type": "product-details",
+      "settings": {
+        "reveal": true,
+        "show_videos": true,
+        "video_heading": "See it in action.",
+        "details_heading": ""
+      }
+    },
+    "video_carousel_CkGjQ6": {
+      "type": "video-carousel",
+      "blocks": {
+        "video_zb6GJg": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_3_1.mp4"
+          }
+        },
+        "video_DrwE4j": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_22.mp4"
+          }
+        },
+        "video_4JXp3H": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_6.mp4"
+          }
+        },
+        "video_9qcr9V": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_3_3(2).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_zb6GJg",
+        "video_DrwE4j",
+        "video_4JXp3H",
+        "video_9qcr9V"
+      ],
+      "name": "Video Carousel",
+      "settings": {
+        "heading": "",
+        "desktop_columns": 5,
+        "tablet_columns": 3,
+        "mobile_columns": 1,
+        "autoplay": true,
+        "auto_advance": false,
+        "auto_advance_speed": 5,
+        "heading_color": "#000000",
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60
+      }
+    },
+    "179127830895a6d0e6": {
+      "type": "apps",
+      "settings": {}
+    },
+    "related": {
+      "type": "product-rail",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "BEST SELLERS · COD AVAILABLE",
+        "heading": "You might also like.",
+        "description": "",
+        "products": [],
+        "collection": "all",
+        "limit": 4,
+        "link_label": "View all",
+        "anchor": "more-finds"
+      }
+    },
+    "17912768115a8a8936": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_hRVExn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_hRVExn"
+      ],
+      "settings": {}
+    },
+    "product_testimonials": {
+      "type": "product-testimonials",
+      "disabled": true,
+      "blocks": {
+        "testimonial_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>Real stories. <strong>Real comfort.</strong></h2>",
+            "heading_size": 48,
+            "heading_size_mobile": 34,
+            "heading_color": "#080b11",
+            "heading_accent_color": "#0b3dff"
+          }
+        },
+        "testimonial_intro": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Add verified customer experiences here.</p>",
+            "text_size": 16,
+            "text_size_mobile": 15,
+            "text_color": "#53647a"
+          }
+        },
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {
+            "stars_count": 0,
+            "text": "",
+            "author": "",
+            "subcopy_author": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_heading",
+        "testimonial_intro",
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4"
+      ],
+      "settings": {
+        "background_style": "solid",
+        "background_color": "#f4f8ff",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#dbe7f5",
+        "border_color": "#dbe7f5",
+        "text_color": "#080b11",
+        "author_color": "#080b11",
+        "subcopy_author_color": "#53647a",
+        "slide_stars_bg_color": "#0b3dff",
+        "slide_stars_color": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "card_radius": 20,
+        "card_border_thickness": 1,
+        "pause_hover": true,
+        "lazy": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "chapters",
+    "lens",
+    "details",
+    "product_testimonials",
+    "video_carousel_CkGjQ6",
+    "179127830895a6d0e6",
+    "related",
+    "17912768115a8a8936"
+  ]
+}
