@@ -132,7 +132,7 @@
       ],
       "name": "Video Carousel",
       "settings": {
-        "heading": "WHAT OUR FELLOWS THINK",
+        "heading": "",
         "desktop_columns": 5,
         "tablet_columns": 3,
         "mobile_columns": 1,
