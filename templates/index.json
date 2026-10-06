@@ -9,41 +9,218 @@
  */
 {
   "sections": {
-    "hero": { "type": "isblue-hero", "settings": {} },
+    "hero": {
+      "type": "isblue-hero",
+      "settings": {
+        "eyebrow": "Good Products. Brighter Days.",
+        "heading": "Everyday Solutions for a",
+        "accent": "Better Tomorrow",
+        "description": "Discover useful, innovative and high-quality products for a smarter, easier and happier life.",
+        "button": "Shop Now",
+        "link": "",
+        "proof_title": "Shopping made simple",
+        "proof_text": "Secure payments and Cash on Delivery"
+      }
+    },
     "trust": {
       "type": "isblue-benefits",
-      "settings": {},
       "blocks": {
-        "shipping": { "type": "benefit", "settings": { "icon": "truck", "title": "Free Shipping", "text": "On orders above ₹499" } },
-        "payments": { "type": "benefit", "settings": { "icon": "shield", "title": "Secure Payments", "text": "Protected online checkout" } },
-        "cod": { "type": "benefit", "settings": { "icon": "cash", "title": "Cash on Delivery", "text": "Available on eligible orders" } },
-        "support": { "type": "benefit", "settings": { "icon": "headphones", "title": "24/7 Support", "text": "We are here to help" } }
+        "shipping": {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "text": "On orders above ₹499"
+          }
+        },
+        "payments": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Secure Payments",
+            "text": "Protected online checkout"
+          }
+        },
+        "cod": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cash",
+            "title": "Cash on Delivery",
+            "text": "Available on eligible orders"
+          }
+        },
+        "support": {
+          "type": "benefit",
+          "settings": {
+            "icon": "headphones",
+            "title": "24/7 Support",
+            "text": "We are here to help"
+          }
+        }
       },
-      "block_order": ["shipping", "payments", "cod", "support"]
+      "block_order": [
+        "shipping",
+        "payments",
+        "cod",
+        "support"
+      ],
+      "settings": {}
     },
-    "products": { "type": "isblue-products", "settings": { "kicker": "Popular Right Now", "title": "Products", "description": "Useful products chosen for everyday life.", "limit": 4 } },
-    "showcase": { "type": "isblue-showcase", "settings": {} },
+    "products": {
+      "type": "isblue-products",
+      "settings": {
+        "kicker": "Popular Right Now",
+        "title": "Products",
+        "description": "Useful products chosen for everyday life.",
+        "collection": "",
+        "limit": 4
+      }
+    },
+    "showcase": {
+      "type": "isblue-showcase",
+      "settings": {
+        "heading": "Smart Products For a Smarter You",
+        "description": "From daily essentials to useful gadgets, discover products that make life easier.",
+        "button": "Shop Now",
+        "link": ""
+      }
+    },
     "values": {
       "type": "isblue-values",
-      "settings": {},
       "blocks": {
-        "quality": { "type": "value", "settings": { "icon": "shield", "title": "Thoughtfully Selected", "text": "Products chosen with care" } },
-        "price": { "type": "value", "settings": { "icon": "tag", "title": "Fair Prices", "text": "Great value for everyday shopping" } },
-        "useful": { "type": "value", "settings": { "icon": "spark", "title": "Trending & Useful", "text": "Products you will actually use" } },
-        "trusted": { "type": "value", "settings": { "icon": "heart", "title": "Made for India", "text": "Cash on Delivery available" } }
+        "quality": {
+          "type": "value",
+          "settings": {
+            "icon": "shield",
+            "title": "Thoughtfully Selected",
+            "text": "Products chosen with care"
+          }
+        },
+        "price": {
+          "type": "value",
+          "settings": {
+            "icon": "tag",
+            "title": "Fair Prices",
+            "text": "Great value for everyday shopping"
+          }
+        },
+        "useful": {
+          "type": "value",
+          "settings": {
+            "icon": "spark",
+            "title": "Trending & Useful",
+            "text": "Products you will actually use"
+          }
+        },
+        "trusted": {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "title": "Made for India",
+            "text": "Cash on Delivery available"
+          }
+        }
       },
-      "block_order": ["quality", "price", "useful", "trusted"]
+      "block_order": [
+        "quality",
+        "price",
+        "useful",
+        "trusted"
+      ],
+      "settings": {}
     },
     "testimonials": {
       "type": "isblue-testimonials",
-      "settings": {},
       "blocks": {
-        "review1": { "type": "testimonial", "settings": { "quote": "Really useful product. Quality is great and delivery was fast. Will definitely order again.", "name": "Aarav S.", "location": "Pune, MH" } },
-        "review2": { "type": "testimonial", "settings": { "quote": "Perfect for my daily needs. Exactly as shown and works really well.", "name": "Riya K.", "location": "Mumbai, MH" } },
-        "review3": { "type": "testimonial", "settings": { "quote": "Amazing service and product quality. The packaging was excellent too.", "name": "Vikram P.", "location": "Bengaluru, KA" } }
+        "review1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Really useful product. Quality is great and delivery was fast. Will definitely order again.",
+            "name": "Aarav S.",
+            "location": "Pune, MH"
+          }
+        },
+        "review2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Perfect for my daily needs. Exactly as shown and works really well.",
+            "name": "Riya K.",
+            "location": "Mumbai, MH"
+          }
+        },
+        "review3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Amazing service and product quality. The packaging was excellent too.",
+            "name": "Vikram P.",
+            "location": "Bengaluru, KA"
+          }
+        }
       },
-      "block_order": ["review1", "review2", "review3"]
+      "block_order": [
+        "review1",
+        "review2",
+        "review3"
+      ],
+      "disabled": true,
+      "settings": {
+        "kicker": "REAL STORIES",
+        "heading": "What Our Customers Say",
+        "description": "Trusted by shoppers across India"
+      }
+    },
+    "17912780817bec6631": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_8RDQyb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#F9F9F9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_8RDQyb"
+      ],
+      "settings": {}
     }
   },
-  "order": ["hero", "trust", "products", "showcase", "values", "testimonials"]
+  "order": [
+    "hero",
+    "trust",
+    "products",
+    "showcase",
+    "values",
+    "testimonials",
+    "17912780817bec6631"
+  ]
 }
