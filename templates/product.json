@@ -96,6 +96,55 @@
         "details_heading": ""
       }
     },
+    "video_carousel_CkGjQ6": {
+      "type": "video-carousel",
+      "blocks": {
+        "video_zb6GJg": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_3_1.mp4"
+          }
+        },
+        "video_DrwE4j": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_22.mp4"
+          }
+        },
+        "video_4JXp3H": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_6.mp4"
+          }
+        },
+        "video_9qcr9V": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/Ad Library_3_3(2).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_zb6GJg",
+        "video_DrwE4j",
+        "video_4JXp3H",
+        "video_9qcr9V"
+      ],
+      "name": "Video Carousel",
+      "settings": {
+        "heading": "WHAT OUR FELLOWS THINK",
+        "desktop_columns": 5,
+        "tablet_columns": 3,
+        "mobile_columns": 1,
+        "autoplay": true,
+        "auto_advance": false,
+        "auto_advance_speed": 5,
+        "heading_color": "#000000",
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60
+      }
+    },
     "179127830895a6d0e6": {
       "type": "apps",
       "settings": {}
@@ -138,6 +187,7 @@
     "chapters",
     "lens",
     "details",
+    "video_carousel_CkGjQ6",
     "179127830895a6d0e6",
     "related",
     "17912768115a8a8936"
