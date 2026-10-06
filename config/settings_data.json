@@ -24,6 +24,11 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "12147612498419570842": {
+        "type": "shopify://apps/zapio-bundles-upsell/blocks/zapio-widget/019b220e-8c46-7b31-a4a6-4d6d4848207b",
+        "disabled": false,
+        "settings": {}
       }
     }
   }
