@@ -31,12 +31,59 @@
         "anchor": "more-finds",
         "link_label": "Explore all"
       }
+    },
+    "video_carousel": {
+      "type": "video-carousel",
+      "disabled": true,
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {}
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {}
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {}
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {}
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ],
+      "settings": {
+        "heading": "WHAT OUR FELLOWS THINK",
+        "desktop_columns": 5,
+        "tablet_columns": 3,
+        "mobile_columns": 1,
+        "autoplay": true,
+        "auto_advance": false,
+        "auto_advance_speed": 5,
+        "heading_color": "#080b11",
+        "background_color": "#f4f8ff",
+        "section_padding_top": 64,
+        "section_padding_bottom": 64
+      }
     }
   },
   "order": [
     "main",
     "chapters",
     "details",
+    "video_carousel",
     "related"
   ]
 }
