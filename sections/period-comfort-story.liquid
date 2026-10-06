@@ -1,0 +1,198 @@
+{% liquid
+  assign primary_image = section.settings.primary_image | default: product.media[0].preview_image
+  assign detail_image = section.settings.detail_image | default: product.media[3].preview_image
+  assign included_image = section.settings.included_image | default: product.media[2].preview_image
+  assign current_variant = product.selected_or_first_available_variant
+%}
+
+<section class="pc-story pc-story--{{ section.id }}" aria-labelledby="pc-story-title-{{ section.id }}">
+  <div class="pc-story__shell">
+    <div class="pc-story__intro">
+      <div class="pc-story__intro-copy">
+        <p class="pc-story__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        <h2 id="pc-story-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        <p class="pc-story__lede">{{ section.settings.body | escape }}</p>
+        {% if current_variant.available %}
+          <p class="pc-story__availability">Available now</p>
+        {% endif %}
+      </div>
+      {% if primary_image != blank %}
+        <div class="pc-story__media pc-story__media--primary">
+          {{ primary_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '480, 720, 1000, 1400', sizes: '(min-width: 900px) 48vw, 100vw', alt: product.title }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="pc-story__facts" aria-label="Product highlights">
+      <div><strong>3</strong><span>heat levels</span></div>
+      <div><strong>4</strong><span>massage modes</span></div>
+      <div><strong>1</strong><span>adjustable fit</span></div>
+    </div>
+
+    <div class="pc-story__feature">
+      {% if detail_image != blank %}
+        <div class="pc-story__media">
+          {{ detail_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: 'Digital display and controls for the period comfort massager' }}
+        </div>
+      {% endif %}
+      <div class="pc-story__feature-copy">
+        <h3>Choose what feels comfortable.</h3>
+        <p>The clear display keeps heat and massage settings easy to see. Begin low, then adjust at your own pace.</p>
+        <dl>
+          <div><dt>Controls</dt><dd>Simple digital display</dd></div>
+          <div><dt>Fit</dt><dd>Adjustable wraparound belt</dd></div>
+          <div><dt>Power</dt><dd>USB rechargeable</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="pc-story__routine">
+      <div class="pc-story__routine-copy">
+        <h3>Comfort that fits your routine.</h3>
+        <div class="pc-story__steps">
+          <div><span>01</span><p><strong>Wrap</strong>Place the belt over your lower abdomen or back.</p></div>
+          <div><span>02</span><p><strong>Choose</strong>Start with the lowest heat and massage setting.</p></div>
+          <div><span>03</span><p><strong>Unwind</strong>Rest at home without holding a separate heating pad.</p></div>
+        </div>
+      </div>
+      {% if included_image != blank %}
+        <div class="pc-story__media">
+          {{ included_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1200', sizes: '(min-width: 900px) 46vw, 100vw', alt: 'Period comfort massager with adjustable belt and USB charging cable' }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="pc-story__confidence" aria-label="Shopping confidence">
+      <p><strong>Cash on Delivery</strong><span>Available at checkout</span></p>
+      <p><strong>Secure payment</strong><span>Protected checkout</span></p>
+      <a href="{{ routes.root_url }}policies/shipping-policy"><strong>Shipping details</strong><span>Read the policy</span></a>
+      <a href="{{ routes.root_url }}policies/refund-policy"><strong>Returns</strong><span>Read the policy</span></a>
+    </div>
+
+    {% if section.settings.show_testimonial_preview %}
+      <div class="pc-story__testimonials" aria-labelledby="pc-testimonials-title-{{ section.id }}">
+        <p class="pc-story__preview-label">Preview content only</p>
+        <h3 id="pc-testimonials-title-{{ section.id }}">Customer stories will live here.</h3>
+        <p class="pc-story__testimonial-note">This layout is ready for verified reviews. No customer claims have been invented for this preview.</p>
+        <div class="pc-story__testimonial-grid">
+          <article><p>Verified review copy</p><span>Customer name and purchase status</span></article>
+          <article><p>Customer photo or short quote</p><span>Only after a genuine submission</span></article>
+          <article><p>Product experience</p><span>Concise, readable and attributable</span></article>
+        </div>
+      </div>
+    {% endif %}
+
+    <p class="pc-story__safety">For external comfort use only. Do not use while sleeping. If you are pregnant, have sensitive skin or a medical condition, consult a healthcare professional before use.</p>
+  </div>
+</section>
+
+{% style %}
+  .pc-story--{{ section.id }} {
+    --pc-ink: {{ section.settings.text_color }};
+    --pc-muted: #586a80;
+    --pc-accent: {{ section.settings.accent_color }};
+    --pc-ice: {{ section.settings.background_color }};
+    --pc-line: #dce7f3;
+    color: var(--pc-ink);
+    background: #fff;
+    padding: clamp(52px, 8vw, 104px) 20px;
+  }
+  .pc-story--{{ section.id }} * { box-sizing: border-box; }
+  .pc-story--{{ section.id }} .pc-story__shell { width: min(1160px, 100%); margin: 0 auto; display: grid; gap: clamp(48px, 7vw, 88px); }
+  .pc-story--{{ section.id }} .pc-story__intro,
+  .pc-story--{{ section.id }} .pc-story__feature,
+  .pc-story--{{ section.id }} .pc-story__routine { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(28px, 6vw, 76px); }
+  .pc-story--{{ section.id }} .pc-story__intro-copy { max-width: 540px; }
+  .pc-story--{{ section.id }} .pc-story__eyebrow,
+  .pc-story--{{ section.id }} .pc-story__preview-label { margin: 0 0 16px; color: var(--pc-accent); font-size: 12px; font-weight: 760; letter-spacing: .13em; text-transform: uppercase; }
+  .pc-story--{{ section.id }} h2 { max-width: 760px; margin: 0; color: var(--pc-ink); font-size: clamp(42px, 6vw, 72px); line-height: .98; letter-spacing: -.055em; }
+  .pc-story--{{ section.id }} h3 { margin: 0; color: var(--pc-ink); font-size: clamp(30px, 4vw, 48px); line-height: 1.04; letter-spacing: -.04em; }
+  .pc-story--{{ section.id }} .pc-story__lede { max-width: 48ch; margin: 22px 0 0; color: var(--pc-muted); font-size: 18px; line-height: 1.65; }
+  .pc-story--{{ section.id }} .pc-story__availability { display: inline-flex; min-height: 36px; align-items: center; margin: 28px 0 0; padding: 0 14px; border: 1px solid #bfd2e8; border-radius: 999px; color: #164c31; background: #f3fbf6; font-size: 13px; font-weight: 720; }
+  .pc-story--{{ section.id }} .pc-story__media { overflow: hidden; border: 1px solid var(--pc-line); border-radius: 20px; background: var(--pc-ice); }
+  .pc-story--{{ section.id }} .pc-story__media img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+  .pc-story--{{ section.id }} .pc-story__media--primary { box-shadow: 0 30px 80px rgba(18, 56, 96, .10); }
+  .pc-story--{{ section.id }} .pc-story__facts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--pc-line); border-bottom: 1px solid var(--pc-line); }
+  .pc-story--{{ section.id }} .pc-story__facts div { display: grid; gap: 4px; padding: 30px 24px; }
+  .pc-story--{{ section.id }} .pc-story__facts div + div { border-left: 1px solid var(--pc-line); }
+  .pc-story--{{ section.id }} .pc-story__facts strong { color: var(--pc-accent); font-size: clamp(34px, 4vw, 52px); line-height: 1; letter-spacing: -.05em; }
+  .pc-story--{{ section.id }} .pc-story__facts span { color: var(--pc-muted); font-size: 14px; }
+  .pc-story--{{ section.id }} .pc-story__feature-copy { display: grid; gap: 22px; }
+  .pc-story--{{ section.id }} .pc-story__feature-copy > p { max-width: 52ch; margin: 0; color: var(--pc-muted); font-size: 17px; line-height: 1.65; }
+  .pc-story--{{ section.id }} dl { display: grid; gap: 0; margin: 6px 0 0; }
+  .pc-story--{{ section.id }} dl div { display: grid; grid-template-columns: 110px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--pc-line); }
+  .pc-story--{{ section.id }} dt { color: var(--pc-muted); font-size: 13px; }
+  .pc-story--{{ section.id }} dd { margin: 0; font-size: 15px; font-weight: 680; }
+  .pc-story--{{ section.id }} .pc-story__routine { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); }
+  .pc-story--{{ section.id }} .pc-story__routine-copy { display: grid; gap: 30px; }
+  .pc-story--{{ section.id }} .pc-story__steps { display: grid; }
+  .pc-story--{{ section.id }} .pc-story__steps > div { display: grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--pc-line); }
+  .pc-story--{{ section.id }} .pc-story__steps span { color: var(--pc-accent); font-size: 12px; font-weight: 760; }
+  .pc-story--{{ section.id }} .pc-story__steps p { display: grid; gap: 4px; margin: 0; color: var(--pc-muted); font-size: 14px; }
+  .pc-story--{{ section.id }} .pc-story__steps strong { color: var(--pc-ink); font-size: 16px; }
+  .pc-story--{{ section.id }} .pc-story__confidence { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid var(--pc-line); border-radius: 20px; background: var(--pc-ice); }
+  .pc-story--{{ section.id }} .pc-story__confidence p,
+  .pc-story--{{ section.id }} .pc-story__confidence a { display: grid; gap: 6px; min-height: 96px; align-content: center; margin: 0; padding: 20px; color: inherit; text-decoration: none; }
+  .pc-story--{{ section.id }} .pc-story__confidence > * + * { border-left: 1px solid var(--pc-line); }
+  .pc-story--{{ section.id }} .pc-story__confidence strong { font-size: 14px; }
+  .pc-story--{{ section.id }} .pc-story__confidence span { color: var(--pc-muted); font-size: 12px; }
+  .pc-story--{{ section.id }} .pc-story__confidence a { transition: background-color 180ms cubic-bezier(.23,1,.32,1), transform 140ms cubic-bezier(.23,1,.32,1); }
+  .pc-story--{{ section.id }} .pc-story__confidence a:active { transform: scale(.98); }
+  .pc-story--{{ section.id }} .pc-story__testimonials { padding: clamp(32px, 5vw, 56px); border-radius: 20px; background: #071a3d; color: #fff; }
+  .pc-story--{{ section.id }} .pc-story__testimonials h3 { max-width: 760px; color: #fff; }
+  .pc-story--{{ section.id }} .pc-story__testimonial-note { max-width: 620px; margin: 16px 0 0; color: #c9d8eb; font-size: 15px; line-height: 1.6; }
+  .pc-story--{{ section.id }} .pc-story__testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+  .pc-story--{{ section.id }} .pc-story__testimonial-grid article { min-height: 168px; padding: 24px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: rgba(255,255,255,.06); }
+  .pc-story--{{ section.id }} .pc-story__testimonial-grid p { margin: 0 0 34px; color: #fff; font-size: 18px; font-weight: 680; }
+  .pc-story--{{ section.id }} .pc-story__testimonial-grid span { color: #b8cae1; font-size: 12px; line-height: 1.5; }
+  .pc-story--{{ section.id }} .pc-story__safety { margin: -36px auto 0; max-width: 840px; color: var(--pc-muted); font-size: 12px; line-height: 1.6; text-align: center; }
+  [class*="testimonials-slide-stars-"] { display: none !important; }
+  @media (hover: hover) and (pointer: fine) {
+    .pc-story--{{ section.id }} .pc-story__confidence a:hover { background: #e7f0fb; }
+  }
+  @media (max-width: 767px) {
+    .pc-story--{{ section.id }} { padding: 48px 20px 64px; }
+    .pc-story--{{ section.id }} .pc-story__shell { gap: 48px; }
+    .pc-story--{{ section.id }} .pc-story__intro,
+    .pc-story--{{ section.id }} .pc-story__feature,
+    .pc-story--{{ section.id }} .pc-story__routine { grid-template-columns: 1fr; gap: 28px; }
+    .pc-story--{{ section.id }} .pc-story__intro-copy { order: 1; }
+    .pc-story--{{ section.id }} .pc-story__intro .pc-story__media { order: 2; }
+    .pc-story--{{ section.id }} h2 { font-size: clamp(40px, 13vw, 58px); }
+    .pc-story--{{ section.id }} h3 { font-size: 32px; }
+    .pc-story--{{ section.id }} .pc-story__lede { font-size: 16px; }
+    .pc-story--{{ section.id }} .pc-story__facts { grid-template-columns: 1fr; }
+    .pc-story--{{ section.id }} .pc-story__facts div { grid-template-columns: 56px 1fr; align-items: center; padding: 18px 4px; }
+    .pc-story--{{ section.id }} .pc-story__facts div + div { border-top: 1px solid var(--pc-line); border-left: 0; }
+    .pc-story--{{ section.id }} .pc-story__facts strong { font-size: 32px; }
+    .pc-story--{{ section.id }} .pc-story__confidence { grid-template-columns: 1fr 1fr; }
+    .pc-story--{{ section.id }} .pc-story__confidence > * + * { border-left: 0; }
+    .pc-story--{{ section.id }} .pc-story__confidence > *:nth-child(even) { border-left: 1px solid var(--pc-line); }
+    .pc-story--{{ section.id }} .pc-story__confidence > *:nth-child(n+3) { border-top: 1px solid var(--pc-line); }
+    .pc-story--{{ section.id }} .pc-story__testimonial-grid { grid-template-columns: 1fr; }
+    .pc-story--{{ section.id }} .pc-story__testimonial-grid article { min-height: 132px; }
+    .pc-story--{{ section.id }} .pc-story__safety { margin-top: -20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pc-story--{{ section.id }} .pc-story__confidence a { transition: none; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Period comfort story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Simple comfort" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Comfort should feel simple." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Wearable warmth and gentle massage for the moments when your lower abdomen or back needs extra comfort." },
+    { "type": "image_picker", "id": "primary_image", "label": "Primary image" },
+    { "type": "image_picker", "id": "detail_image", "label": "Control detail image" },
+    { "type": "image_picker", "id": "included_image", "label": "Included items image" },
+    { "type": "checkbox", "id": "show_testimonial_preview", "label": "Show testimonial layout preview", "default": true },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#0b3dff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#080b11" },
+    { "type": "color", "id": "background_color", "label": "Soft background", "default": "#f4f8ff" }
+  ],
+  "presets": [{ "name": "Period comfort story" }]
+}
+{% endschema %}
